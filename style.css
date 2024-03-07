@@ -253,6 +253,7 @@ table, td, th {
 #ranking{
     text-align: center;
     font-size: 26px;
+    margin-top: 50px;
 }
 
 #night_league{
@@ -284,5 +285,53 @@ table, td, th {
 }
 
 #night_league_pitcher:target{
+    display: block;
+}
+
+#weekend_league_pitcher{
+    display: none;
+}
+
+#weekend_league_pitcher:target{
+    display: block;
+}
+
+#dawn_league_pitcher{
+    display: none;
+}
+
+#dawn_league_pitcher:target{
+    display: block;
+}
+
+#night_league_hitter{
+    display: none;
+}
+
+#night_league_hitter:target{
+    display: block;
+}
+
+#weekend_league_hitter{
+    display: none;
+}
+
+#weekend_league_hitter:target{
+    display: block;
+}
+
+#dawn_league_hitter{
+    display: none;
+}
+
+#dawn_league_hitter:target{
+    display: block;
+}
+
+#league_top>div>ul {
+    display: none;
+}
+
+#league_top>div:target>ul {
     display: block;
 }
