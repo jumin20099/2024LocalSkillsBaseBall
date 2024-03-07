@@ -1,0 +1,247 @@
+body{
+    margin: 0;
+    padding: 0;
+}
+
+a{
+    text-decoration: none;
+    color: rgb(58, 58, 58);
+}
+
+ul{
+    list-style-type: none;
+}
+
+header{
+    display: flex;
+    /* position: fixed; */
+    top: 0px;
+    border-bottom: 1px solid black;
+    height: 130px;
+}
+
+#leftArticle{
+    margin-left: 300px;
+}
+
+#leftArticle>ul{
+    margin-left: 10px;
+    display: flex;
+    font-size: 20px;
+    line-height: 80px;
+}
+
+#leftArticle>ul>li{
+    margin-left: 30px;
+}
+
+#leftArticle>ul>li>a>img{
+    width: 150px;
+}
+
+#rightArticle{
+    margin-left: 300px;
+}
+
+#rightArticle>ul{
+    display: flex;
+    font-size: 20px;
+    line-height: 80px;
+}
+
+#rightArticle>ul>li{
+    margin-left: 30px;
+}
+
+[name="slide"] {
+    display: none;
+}
+
+.slidebox {
+    max-width: 1000px;
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.slidebox img {
+    max-width: 100%;
+}
+
+.slidebox .slidelist {
+    white-space: nowrap;
+    font-size: 0;
+    overflow: hidden;
+}
+
+.slidebox .slideitem {
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    width: 100%;
+    transition: all 0.35s;
+}
+
+.slidebox .slideitem {
+    animation: slideAnimation 8s infinite linear;
+}
+
+@keyframes slideAnimation {
+
+    0%,
+    20%,
+    100% {
+        transform: translateX(0%);
+    }
+
+    25%,
+    45% {
+        transform: translateX(-100%);
+    }
+
+    50%,
+    70% {
+        transform: translateX(-200%);
+    }
+
+    75%,
+    95% {
+        transform: translateX(-300%);
+    }
+}
+
+
+footer{
+    text-align: center;
+    border-top: solid black 1px;
+    background-color: rgb(226, 226, 226);
+    padding: 20px;
+}
+
+#footerLogoArticle>img{
+    width: 150px;
+}
+
+#infomation>article>img{
+    width: 500px;
+    height: 350px;
+}
+
+#infomation{
+    display: flex;
+    justify-content: space-around;
+}
+
+#info1{
+    text-align: center;
+}
+
+#info2{
+    text-align: center;
+}
+
+#infoTitle{
+    text-align: center;
+}
+
+#infoTitle>p{
+    font-weight: 900;
+    font-size: 60px;
+}
+
+#infoTitle>a{
+    font-size: 30px;
+}
+
+#infoTitle>a:hover{
+    font-weight: 900;
+    font-size: 30px;
+}
+
+#gameSchedule img{
+    width: 300px;
+}
+
+#gameSchedule p{
+    font-size: 30px;
+    font-weight: 900;
+}
+
+#todayGame{
+    text-align: center;
+}
+
+#todayGame>h1{
+    font-size: 35px;
+}
+
+#gamePoint{
+    display: flex;
+    justify-content: center;
+}
+
+#todayGame2>p{
+    line-height: 645px;
+}
+
+table, td, th {
+    border-collapse : collapse;
+    border : 1px solid black;
+}
+
+#scheduleTable{
+    text-align: center;
+    margin: 0 auto;
+    width: 900px;
+    height: 500px;
+    font-size: 25px;
+}
+
+#modal
+{
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    text-align: center;
+    opacity: 0;
+    transition: all 0.5s;
+    visibility: hidden;
+}
+
+#modal_close {
+    font-size: 20px;
+    border: 1px solid #007bff;
+    border-radius: 0.25rem;
+    background-color: #007bff;
+    color: white;
+    margin-top: 20px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+#modal_container {
+    padding: 30px 10px;
+    background-color: white;
+    width: 40%;
+    margin: 0 auto;
+    margin-top: 120px;
+    border-radius: 20px;
+}
+
+#modal_body {
+    margin-top: 20px;
+    font-size: 24px;
+}
+
+#modal:target {
+    visibility: visible;
+    opacity: 1;
+}
+
+.today{
+    background-color: #d2d2d2;
+}

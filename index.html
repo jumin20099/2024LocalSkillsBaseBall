@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>skills baseball park</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+  <header>
+    <article id="leftArticle">
+      <ul>
+        <li><a href="/"><img src="./logo.PNG"></a></li>
+        <li><a href="./sub01.html">Information</a></li>
+        <li><a href="./sub02.html">Statistics</a></li>
+        <li><a href="./sub03.html">Reservation</a></li>
+        <li><a href="./sub04.html">Goods</a></li>
+      </ul>
+    </article>
+    <article id="rightArticle">
+      <ul>
+        <li><a href="#">로그인</a></li>
+        <li><a href="#">회원가입</a></li>
+      </ul>
+    </article>
+  </header>
+
+  <section id="container">
+    <div class="slidebox">
+      <input type="radio" name="slide" id="slide01" checked />
+      <input type="radio" name="slide" id="slide02" />
+      <input type="radio" name="slide" id="slide03" />
+      <input type="radio" name="slide" id="slide04" />
+      <ul class="slidelist">
+        <li class="slideitem">
+          <div>
+            <a><img src="./images/slide1.png" /></a>
+          </div>
+        </li>
+        <li class="slideitem">
+          <div>
+            <a><img src="./images/slide2.png" /></a>
+          </div>
+        </li>
+        <li class="slideitem">
+          <div>
+            <a><img src="./images/slide3.png" /></a>
+          </div>
+        </li>
+        <li class="slideitem">
+          <div>
+            <a><img src="./images/slide4.png" /></a>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <section id="infomation">
+      <article id="info1">
+        <img src="./선수제공파일/images/16.jpg" alt="">
+        <p>Skills baseball park는 시민들의 복리증진을 위하여 설치되었으며,<br>시민들의 건강 및 복지향상과 시민들에게 편리한 시설물 이용을 위한 야구장입니다.</p>
+      </article>
+
+      <article id="info2">
+        <img src="./선수제공파일/images/20.jpg" alt="">
+        <p>야구를 사랑하며 즐기는 생활체육인들이 모이는 곳<br>다양한 즐거움과 감동을 선사하는 곳</p>
+      </article>
+
+    </section>
+
+    <article id="infoTitle">
+      <p>Skills baseball park</p>
+      <a href="./sub01.html">Infomation</a>
+    </article>
+
+    <hr style="margin: 150px 0px 150px 0px;">
+
+    <section id="gameSchedule">
+      <article id="todayGame">
+        <h1>금일 게임 현황</h1>
+        <article id="gamePoint">
+          <div id="todayGame1">
+            <img src="./선수제공파일/images/01.jpg" alt="">
+            <p>5</p>
+          </div>
+          <div id="todayGame2">
+            <p>:</p>
+          </div>
+          <div id="todayGame3">
+            <img src="./선수제공파일/images/01.jpg" alt="">
+            <p>4</p>
+          </div>
+        </article>
+      </article>
+
+      <article id="gameTable">
+        <table id="scheduleTable">
+          <tr>
+            <th>일</th>
+            <th>월</th>
+            <th>화</th>
+            <th>수</th>
+            <th>목</th>
+            <th>금</th>
+            <th>토</th>
+          </tr>
+          <tr>
+            <td></td>
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+            <td>4</td>
+            <td>5</td>
+            <td>6</td>
+          </tr>
+          <tr>
+            <td>7</td>
+            <td>8</td>
+            <td>9</td>
+            <td class="today">10</td>
+            <td>11</td>
+            <td>12</td>
+            <td>13</td>
+          </tr>
+          <tr>
+            <td>14</td>
+            <td>15</td>
+            <td>16</td>
+            <td>17</td>
+            <td>18</td>
+            <td>19</td>
+            <td class="game"><a href="#modal">20</a></td>
+          </tr>
+          <tr>
+            <td>21</td>
+            <td>22</td>
+            <td>23</td>
+            <td>24</td>
+            <td>25</td>
+            <td>26</td>
+            <td>27</td>
+          </tr>
+          <tr>
+            <td>28</td>
+            <td>29</td>
+            <td>30</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+        </table>
+      </article>
+
+      <div id="modal">
+        <div id="modal_container">
+          <img src="./images/야구장픽토그램.JPG" alt="">
+          <div id="modal_header">
+            <h1>4월 20일</h1>
+          </div>
+          <hr>
+          <div id="modal_body">
+            <p>아직 게임이 없습니다.</p>
+          </div>
+          <a href="#game_schedule_table"><button id="modal_close">닫기</button></a>
+        </div>
+      </div>
+    </section>
+
+  </section>
+
+  <footer>
+    <article id="footerLogoArticle">
+      <img src="./logo.PNG">
+    </article>
+
+    <article id="footerRightArticle">
+      [Copyright] <br>
+      Copyrightⓒ Skills baseball park. All rights reserved. <br>
+      Call: 142-3677 <br>
+      Email: help@skillsbaseballpark.com <br>
+      Address: (12345) 서울특별서 중구 중북로 71
+    </article>
+  </footer>
+</body>
+
+</html>
