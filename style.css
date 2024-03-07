@@ -245,3 +245,44 @@ table, td, th {
 .today{
     background-color: #d2d2d2;
 }
+
+.game{
+    font-weight: 900;
+}
+
+#ranking{
+    text-align: center;
+    font-size: 26px;
+}
+
+#night_league{
+    display: none;
+}
+
+#night_league:target{
+    display: block;
+}
+
+#weekend_league{
+    display: none;
+}
+
+#weekend_league:target{
+    display: block;
+}
+
+#dawn_league{
+    display: none;
+}
+
+#dawn_league:target{
+    display: block;
+}
+
+#night_league_pitcher{
+    display: none;
+}
+
+#night_league_pitcher:target{
+    display: block;
+}
