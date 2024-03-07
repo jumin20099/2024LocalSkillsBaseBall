@@ -1,18 +1,18 @@
-body{
+body {
     margin: 0;
     padding: 0;
 }
 
-a{
+a {
     text-decoration: none;
     color: rgb(58, 58, 58);
 }
 
-ul{
+ul {
     list-style-type: none;
 }
 
-header{
+header {
     display: flex;
     /* position: fixed; */
     top: 0px;
@@ -20,36 +20,36 @@ header{
     height: 130px;
 }
 
-#leftArticle{
+#leftArticle {
     margin-left: 300px;
 }
 
-#leftArticle>ul{
+#leftArticle>ul {
     margin-left: 10px;
     display: flex;
     font-size: 20px;
     line-height: 80px;
 }
 
-#leftArticle>ul>li{
+#leftArticle>ul>li {
     margin-left: 30px;
 }
 
-#leftArticle>ul>li>a>img{
+#leftArticle>ul>li>a>img {
     width: 150px;
 }
 
-#rightArticle{
+#rightArticle {
     margin-left: 300px;
 }
 
-#rightArticle>ul{
+#rightArticle>ul {
     display: flex;
     font-size: 20px;
     line-height: 80px;
 }
 
-#rightArticle>ul>li{
+#rightArticle>ul>li {
     margin-left: 30px;
 }
 
@@ -111,85 +111,87 @@ header{
 }
 
 
-footer{
+footer {
     text-align: center;
     border-top: solid black 1px;
     background-color: rgb(226, 226, 226);
     padding: 20px;
 }
 
-#footerLogoArticle>img{
+#footerLogoArticle>img {
     width: 150px;
 }
 
-#infomation>article>img{
+#infomation>article>img {
     width: 500px;
     height: 350px;
 }
 
-#infomation{
+#infomation {
     display: flex;
     justify-content: space-around;
 }
 
-#info1{
+#info1 {
     text-align: center;
 }
 
-#info2{
+#info2 {
     text-align: center;
 }
 
-#infoTitle{
+#infoTitle {
     text-align: center;
 }
 
-#infoTitle>p{
+#infoTitle>p {
     font-weight: 900;
     font-size: 60px;
 }
 
-#infoTitle>a{
+#infoTitle>a {
     font-size: 30px;
 }
 
-#infoTitle>a:hover{
+#infoTitle>a:hover {
     font-weight: 900;
     font-size: 30px;
 }
 
-#gameSchedule img{
+#gameSchedule img {
     width: 300px;
 }
 
-#gameSchedule p{
+#gameSchedule p {
     font-size: 30px;
     font-weight: 900;
 }
 
-#todayGame{
+#todayGame {
     text-align: center;
 }
 
-#todayGame>h1{
+#todayGame>h1 {
     font-size: 35px;
 }
 
-#gamePoint{
+#gamePoint {
     display: flex;
     justify-content: center;
 }
 
-#todayGame2>p{
+#todayGame2>p {
     line-height: 645px;
 }
 
-table, td, th {
-    border-collapse : collapse;
-    border : 1px solid black;
+table,
+td,
+th {
+    border-collapse: collapse;
+    border: 1px solid black;
 }
 
-#scheduleTable{
+#scheduleTable {
     text-align: center;
     margin: 0 auto;
     width: 900px;
@@ -197,8 +199,7 @@ table, td, th {
     font-size: 25px;
 }
 
-#modal
-{
+#modal {
     position: fixed;
     width: 100%;
     height: 100vh;
@@ -242,89 +243,89 @@ table, td, th {
     opacity: 1;
 }
 
-.today{
+.today {
     background-color: #d2d2d2;
 }
 
-.game{
+.game {
     font-weight: 900;
 }
 
-#ranking{
+#ranking {
     text-align: center;
     font-size: 26px;
     margin-top: 50px;
 }
 
-#night_league{
+#night_league {
     display: none;
 }
 
-#night_league:target{
+#night_league:target {
     display: block;
 }
 
-#weekend_league{
+#weekend_league {
     display: none;
 }
 
-#weekend_league:target{
+#weekend_league:target {
     display: block;
 }
 
-#dawn_league{
+#dawn_league {
     display: none;
 }
 
-#dawn_league:target{
+#dawn_league:target {
     display: block;
 }
 
-#night_league_pitcher{
+#night_league_pitcher {
     display: none;
 }
 
-#night_league_pitcher:target{
+#night_league_pitcher:target {
     display: block;
 }
 
-#weekend_league_pitcher{
+#weekend_league_pitcher {
     display: none;
 }
 
-#weekend_league_pitcher:target{
+#weekend_league_pitcher:target {
     display: block;
 }
 
-#dawn_league_pitcher{
+#dawn_league_pitcher {
     display: none;
 }
 
-#dawn_league_pitcher:target{
+#dawn_league_pitcher:target {
     display: block;
 }
 
-#night_league_hitter{
+#night_league_hitter {
     display: none;
 }
 
-#night_league_hitter:target{
+#night_league_hitter:target {
     display: block;
 }
 
-#weekend_league_hitter{
+#weekend_league_hitter {
     display: none;
 }
 
-#weekend_league_hitter:target{
+#weekend_league_hitter:target {
     display: block;
 }
 
-#dawn_league_hitter{
+#dawn_league_hitter {
     display: none;
 }
 
-#dawn_league_hitter:target{
+#dawn_league_hitter:target {
     display: block;
 }
 
@@ -334,4 +335,19 @@ table, td, th {
 
 #league_top>div:target>ul {
     display: block;
+}
+
+#goods {
+    text-align: center;
+}
+
+#goods>img {
+    width: 600px;
+    height: 350px;
+}
+
+#goodsImage:hover {
+    cursor: pointer;
+    width: 650px;
+    height: 400px;
 }
