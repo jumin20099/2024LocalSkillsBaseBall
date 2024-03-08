@@ -15,10 +15,13 @@ ul {
 
 header {
     display: flex;
-    /* position: fixed; */
+    position: fixed;
     top: 0px;
     border-bottom: 1px solid black;
     height: 130px;
+    width: 100%;
+    z-index: 1000;
+    background-color: white;
 }
 
 #leftArticle {
@@ -258,75 +261,19 @@ th {
     margin-top: 50px;
 }
 
-#night_league {
+#ranking_menu>div{
     display: none;
 }
 
-#night_league:target {
+#ranking_menu>div:target{
     display: block;
 }
 
-#weekend_league {
+#league_details>div{
     display: none;
 }
 
-#weekend_league:target {
-    display: block;
-}
-
-#dawn_league {
-    display: none;
-}
-
-#dawn_league:target {
-    display: block;
-}
-
-#night_league_pitcher {
-    display: none;
-}
-
-#night_league_pitcher:target {
-    display: block;
-}
-
-#weekend_league_pitcher {
-    display: none;
-}
-
-#weekend_league_pitcher:target {
-    display: block;
-}
-
-#dawn_league_pitcher {
-    display: none;
-}
-
-#dawn_league_pitcher:target {
-    display: block;
-}
-
-#night_league_hitter {
-    display: none;
-}
-
-#night_league_hitter:target {
-    display: block;
-}
-
-#weekend_league_hitter {
-    display: none;
-}
-
-#weekend_league_hitter:target {
-    display: block;
-}
-
-#dawn_league_hitter {
-    display: none;
-}
-
-#dawn_league_hitter:target {
+#league_details>div:target{
     display: block;
 }
 
@@ -396,27 +343,7 @@ th {
     display: none;
 }
 
-#slide1:target {
-    display: flex;
-}
-
-#slide2:target {
-    display: flex;
-}
-
-#slide3:target {
-    display: flex;
-}
-
-#slide4:target {
-    display: flex;
-}
-
-#slide5:target {
-    display: flex;
-}
-
-#slide6:target {
+#gallery>article:target {
     display: flex;
 }
 
@@ -431,7 +358,7 @@ th {
 }
 
 .slideImgs{
-    height: 550px;
+    height: 0px;
     text-align: center;
 }
 
