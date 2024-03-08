@@ -6,6 +6,7 @@ body {
 a {
     text-decoration: none;
     color: rgb(58, 58, 58);
+    
 }
 
 ul {
@@ -335,6 +336,101 @@ th {
 
 #league_top>div:target>ul {
     display: block;
+}
+
+
+.slides>article>img {
+    width: 300px;
+    height: 300px;
+    margin-left: 30px;
+}
+
+.slides>a {
+    font-size: 35px;
+    font-weight: 900;
+    line-height: 650px;
+    margin-left: 30px;
+}
+
+#slide1 {
+    display: flex;
+    justify-content: center;
+}
+
+#slide1>article>img {
+    width: 300px;
+    height: 300px;
+    margin-left: 30px;
+}
+
+#slide1>a {
+    font-size: 35px;
+    font-weight: 900;
+    line-height: 650px;
+    margin-left: 30px;
+}
+
+.leftImg {
+    padding-top: 100px;
+}
+
+.centerImg {
+    width: 500px !important;
+    height: 500px !important;
+}
+
+.rightImg {
+    padding-top: 100px;
+}
+
+.slides {
+    display: flex;
+    justify-content: center;
+}
+
+.slides {
+    display: none;
+}
+
+#slide1:not(:target) {
+    display: none;
+}
+
+#slide1:target {
+    display: flex;
+}
+
+#slide2:target {
+    display: flex;
+}
+
+#slide3:target {
+    display: flex;
+}
+
+#slide4:target {
+    display: flex;
+}
+
+#slide5:target {
+    display: flex;
+}
+
+#slide6:target {
+    display: flex;
+}
+
+.more{
+    display: none;
+}
+
+.slideImgs:hover .more{
+    display: block;
+}
+
+.slideImgs{
+    height: 550px;
+    text-align: center;
 }
 
 #goods {
