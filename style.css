@@ -422,6 +422,8 @@ th {
 
 .more{
     display: none;
+    position: relative;
+    bottom: 35px;
 }
 
 .slideImgs:hover .more{
