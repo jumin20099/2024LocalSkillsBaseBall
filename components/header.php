@@ -2,10 +2,10 @@
     <article id="leftArticle">
         <ul>
             <li><a href="/"><img src="./logo.PNG"></a></li>
-            <li><a href="./sub01.html">Information</a></li>
-            <li><a href="./sub02.html">Statistics</a></li>
-            <li><a href="./sub03.html">Reservation</a></li>
-            <li><a href="./sub04.html">Goods</a></li>
+            <li><a href="infomation">Information</a></li>
+            <li><a href="statistics">Statistics</a></li>
+            <li><a href="reservation">Reservation</a></li>
+            <li><a href="goods">Goods</a></li>
         </ul>
     </article>
     <article id="rightArticle">
