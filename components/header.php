@@ -2,7 +2,7 @@
     <article id="leftArticle">
         <ul>
             <li><a href="/"><img src="./logo.PNG"></a></li>
-            <li><a href="infomation">Information</a></li>
+            <li><a href="information">Information</a></li>
             <li><a href="statistics">Statistics</a></li>
             <li><a href="reservation">Reservation</a></li>
             <li><a href="goods">Goods</a></li>
