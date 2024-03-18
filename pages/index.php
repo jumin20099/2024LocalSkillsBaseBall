@@ -9,23 +9,8 @@
 </head>
 
 <body>
-  <header>
-    <article id="leftArticle">
-      <ul>
-        <li><a href="/"><img src="./logo.PNG"></a></li>
-        <li><a href="./sub01.html">Information</a></li>
-        <li><a href="./sub02.html">Statistics</a></li>
-        <li><a href="./sub03.html">Reservation</a></li>
-        <li><a href="./sub04.html">Goods</a></li>
-      </ul>
-    </article>
-    <article id="rightArticle">
-      <ul>
-        <li><a href="#">로그인</a></li>
-        <li><a href="#">회원가입</a></li>
-      </ul>
-    </article>
-  </header>
+
+  <?php include("./components/header.php")?>
 
   <section id="container">
     <div class="slidebox">
@@ -539,19 +524,8 @@
     </section>
   </section>
 
-  <footer>
-    <article id="footerLogoArticle">
-      <img src="./logo.PNG">
-    </article>
+  <?php include("./componets/footer.php")?>
 
-    <article id="footerRightArticle">
-      [Copyright] <br>
-      Copyrightⓒ Skills baseball park. All rights reserved. <br>
-      Call: 142-3677 <br>
-      Email: help@skillsbaseballpark.com <br>
-      Address: (12345) 서울특별서 중구 중북로 71
-    </article>
-  </footer>
 </body>
 
 </html>
