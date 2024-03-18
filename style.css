@@ -376,3 +376,78 @@ th {
     width: 650px;
     height: 400px;
 }
+
+#infoContainer{
+    margin-top: 100px;
+}
+
+#controls{
+    padding-top: 150px;
+}
+
+.bar-container {
+    display: flex;
+    align-items: flex-end;
+    height: 200px;
+    margin-bottom: 20px;
+}
+
+.bar {
+    width: 30px;
+    margin-right: 10px;
+    background-color: #007bff;
+    text-align: center;
+    color: white;
+}
+
+.bar-label {
+    writing-mode: vertical-lr;
+    transform: rotate(180deg);
+    white-space: nowrap;
+}
+
+/* Goods 영역 */
+#goods {
+    width: 1320px;
+    margin: 0 auto;
+    margin-top: 300px;
+    text-align: center;
+}
+
+#goods select {
+    width: auto;
+}
+
+#viewOptions label {
+    font-size: 18px;
+    margin-right: 5px;
+}
+
+#bestGoodsList,
+#goodsList {
+    justify-content: center;
+    display: flex;
+}
+
+#bestGoodsList div,
+#goodsList div {
+    padding: 5px 10px;
+}
+
+#bestGoodsList div img,
+#goodsList div img {
+    border-radius: 15px;
+}
+
+/* 모달 영역 */
+.edit-area {
+    width: 100%;
+    height: 300px;
+    border: 1px solid #ccc;
+    position: relative;
+    background-color: #f0f0f0;
+}
+
+.edit-tools {
+    margin-top: 10px;
+}
