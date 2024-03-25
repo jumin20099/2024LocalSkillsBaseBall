@@ -12,9 +12,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
     if ($user && ($password == $user['password']) && ($userRank == $user['user_rank'])) {
+        // 로그인 성공 시 로그인 시간 업데이트
+        $now = date("Y-m-d H:i:s");
+        $update_sql = "UPDATE user SET login_date = :login_date WHERE user_idx = :user_idx";
+        $update_stmt = $pdo->prepare($update_sql);
+        $update_stmt->bindParam(":login_date", $now);
+        $update_stmt->bindParam(":user_idx", $user["user_idx"]);
+        $update_stmt->execute();
+
         $_SESSION["user_idx"] = $user["user_idx"];
         $_SESSION["username"] = $user["username"];
-        header("Location: /");
+
+        // 성공 메시지와 마지막 로그인 시각 표시
+        echo "
+        <script>
+        alert('로그인에 성공했습니다. 마지막 로그인 시각: $now');
+        location.href='/';
+        </script>";
         exit;
     } else {
         echo "
