@@ -304,3 +304,11 @@ const nameRegex = (target) => {
   target.value = target.value.replace(/[^가-힣-ㄱ-ㅎ]+$/g, "");
 }
 
+$(document).ready(function() {
+  $('.check-username').click(function() {
+      var username = $('[name="username"]').val();
+      $.post('signup', { username: username }, function(response) {
+          $('#responseMessage').text(response); // 응답을 div 요소에 출력
+      });
+  });
+});
