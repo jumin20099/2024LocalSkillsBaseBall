@@ -12,6 +12,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "
         <script>
         alert('회원가입 완료');
+        location.href = 'signup';
         </script>";
     } else{
         echo "
