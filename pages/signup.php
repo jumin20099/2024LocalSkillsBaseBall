@@ -3,8 +3,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST['username'];
     $name = $_POST['name'];
     $password = $_POST['password'];
+    $captcha = $_POST['captcha'];
 
-    try {
+    if($captcha == '1QS35'){
         $sql = "INSERT INTO user (username, name, password) VALUES (?, ?, ?)";
         $stmt = $pdo->prepare($sql);
         $stmt->execute([$username, $name, $password]);
@@ -12,8 +13,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <script>
         alert('회원가입 완료');
         </script>";
-    } catch (PDOException $e) {
-        echo $e->getMessage();
+    } else{
+        echo "
+        <script>
+        alert('캡차를 다시 확인해주세요');
+        </script>";
     }
 }
 ?>
@@ -46,6 +50,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="input-group mb-3">
                 <span class="input-group-text" id="addon-wrapping">비밀번호</span>
                 <input type="password" class="form-control" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1" name="password">
+            </div>
+            <img src="./images/캡차.JPG" alt="">
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="addon-wrapping">캡차</span>
+                <input type="text" class="form-control" placeholder="" aria-label="Example text with button addon" maxlength="5" aria-describedby="button-addon1" name="captcha">
             </div>
             <button type="submit" class="btn btn-primary">회원가입</button>
         </form>
