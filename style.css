@@ -362,11 +362,11 @@ th {
     text-align: center;
 }
 
-#goods {
+#mainGoods {
     text-align: center;
 }
 
-#goods>img {
+#mainGoods>img {
     width: 600px;
     height: 350px;
 }

@@ -516,7 +516,7 @@
 
     <hr>
 
-    <section id="goods">
+    <section id="mainGoods">
       <img id="goodsImage" src="./선수제공파일/images/42.jpg" alt="">
       <img src="./선수제공파일/images/43.jpg" alt=""><br>
       <img src="./선수제공파일/images/40.jpg" alt="">
