@@ -6,7 +6,7 @@ body {
 a {
     text-decoration: none;
     color: rgb(58, 58, 58);
-    
+
 }
 
 ul {
@@ -261,19 +261,19 @@ th {
     margin-top: 50px;
 }
 
-#ranking_menu>div{
+#ranking_menu>div {
     display: none;
 }
 
-#ranking_menu>div:target{
+#ranking_menu>div:target {
     display: block;
 }
 
-#league_details>div{
+#league_details>div {
     display: none;
 }
 
-#league_details>div:target{
+#league_details>div:target {
     display: block;
 }
 
@@ -347,17 +347,17 @@ th {
     display: flex;
 }
 
-.more{
+.more {
     display: none;
     position: relative;
     bottom: 35px;
 }
 
-.slideImgs:hover .more{
+.slideImgs:hover .more {
     display: block;
 }
 
-.slideImgs{
+.slideImgs {
     height: 0px;
     text-align: center;
 }
@@ -377,11 +377,11 @@ th {
     height: 400px;
 }
 
-#infoContainer{
+#infoContainer {
     margin-top: 100px;
 }
 
-#controls{
+#controls {
     padding-top: 150px;
 }
 
@@ -439,7 +439,7 @@ th {
     border-radius: 15px;
 }
 
-.card{
+.card {
     margin: 10px 10px;
     width: 300px;
 }
@@ -457,10 +457,25 @@ th {
     margin-top: 10px;
 }
 
-#chartArea{
+#chartArea {
     border: solid black 2px;
     border-radius: 5px;
     margin: 30px 30px;
     width: 1050px;
     height: 200px;
+}
+
+
+#signupContainer {
+    margin: 200px 0px 200px 0px;
+    display: flex;
+    justify-content: center;
+}
+
+#signupForm{
+    text-align: center;
+}
+
+#signupForm>h1{
+    text-align: center;
 }
