@@ -29,7 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt->execute([$username, $name, $password]);
         echo "
         <script>
-        alert('회원가입 완료');
+        alert('관리자 승인 대기중입니다.');
         location.href = 'signup';
         </script>";
     } else {
