@@ -330,36 +330,98 @@ th {
     padding-top: 100px;
 }
 
-.slides {
-    display: flex;
+#gallery {
+    margin-top: 100px;
     justify-content: center;
 }
 
-.slides {
-    display: none;
-}
-
-#slide1:not(:target) {
-    display: none;
-}
-
-#gallery>article:target {
+#galleryContainer{
     display: flex;
 }
 
-.more {
+#gallery>div {
     display: none;
-    position: relative;
-    bottom: 35px;
 }
 
-.slideImgs:hover .more {
-    display: block;
+#gallery>div:first-of-type {
+    display: flex;
 }
 
-.slideImgs {
-    height: 0px;
-    text-align: center;
+#gallery>div:target {
+    display: flex;
+}
+
+#gallery:has(:target:not(:is(#gallery1)))>#gallery1 {
+    display: none;
+}
+
+#gallery div div {
+    margin: 0 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+#gallery div div p {
+    visibility: hidden;
+}
+
+#gallery div div:hover p {
+    visibility: visible;
+}
+
+#gallery div div:nth-of-type(1) {
+    width: 290px;
+    height: 200px;
+}
+
+#gallery div div:nth-of-type(2) {
+    width: 600px;
+    height: 350px;
+}
+
+#gallery div div:nth-of-type(3) {
+    width: 290px;
+    height: 200px;
+}
+
+.imgWhite {
+    background-color: white;
+}
+
+.img1 {
+    background-image: url("./선수제공파일/images/30.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.img2 {
+    background-image: url("./선수제공파일/images/31.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.img3 {
+    background-image: url("./선수제공파일/images/32.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.img4 {
+    background-image: url("./선수제공파일/images/33.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.img5 {
+    background-image: url("./선수제공파일/images/34.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.img6 {
+    background-image: url("./선수제공파일/images/35.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
 #mainGoods {

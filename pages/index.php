@@ -10,7 +10,7 @@
 
 <body>
 
-  <?php include("./components/header.php")?>
+  <?php include ("./components/header.php") ?>
 
   <section id="container">
     <div class="slidebox">
@@ -328,191 +328,87 @@
 
     <hr>
 
-    <section id="gallery">
-      <article id="slide1">
-
-        <a href="#slide1">이전</a>
-
-        <article class="slideImgs" id="slideImg1">
-          <img class="leftImg" src="./images/slide.JPG" alt="">
-        </article>
-
-        <article class="slideImgs" id="slideImg2">
-          <img class="centerImg" src="./선수제공파일/images/34.jpg" alt="">
-          <article class="more">
-            <button>more</button>
-            <p>1번째 이미지</p>
-          </article>
-        </article>
-
-        <article class="slideImgs" id="slideImg3">
-          <img class="rightImg" src="./선수제공파일/images/35.jpg" alt="">
-          <article class="more">
-            <button>more</button>
-            <p>2번째 이미지</p>
-          </article>
-        </article>
-
-        <a href="#slide2">다음</a>
-
-      </article>
-
-      <article class="slides" id="slide2">
-
-        <a href="#slide1">이전</a>
-
-        <article class="slideImgs" id="slideImg4">
-          <img class="leftImg" src="./선수제공파일/images/34.jpg" alt="">
-          <article class="more">
-            <button>more</button>
-            <p>1번째 이미지</p>
-          </article>
-        </article>
-
-        <article class="slideImgs" id="slideImg5">
-          <img class="centerImg" src="./선수제공파일/images/35.jpg" alt="">
-          <article class="more">
-            <button>more</button>
-            <p>2번째 이미지</p>
-          </article>
-        </article>
-
-        <article class="slideImgs" id="slideImg6">
-          <img class="rightImg" src="./선수제공파일/images/36.jpg" alt="">
-          <article class="more">
-            <button>more</button>
-            <p>3번째 이미지</p>
-          </article>
-        </article>
-
-        <a href="#slide3">다음</a>
-
-      </article>
-
-      <article class="slides" id="slide3">
-
-        <a href="#slide2">이전</a>
-
-        <article class="slideImgs" id="slideImg7">
-          <img class="leftImg" src="./선수제공파일/images/35.jpg" alt="">
-          <article class="more">
-            <button>more</button>
-            <p>2번째 이미지</p>
-          </article>
-        </article>
-
-        <article class="slideImgs" id="slideImg8">
-          <img class="centerImg" src="./선수제공파일/images/36.jpg" alt="">
-          <article class="more">
-            <button>more</button>
-            <p>3번째 이미지</p>
-          </article>
-        </article>
-
-        <article class="slideImgs" id="slideImg9">
-          <img class="rightImg" src="./선수제공파일/images/37.jpg" alt="">
-          <article class="more">
-            <button>more</button>
-            <p>4번째 이미지</p>
-          </article>
-        </article>
-
-        <a href="#slide4">다음</a>
-
-      </article>
-
-      <article class="slides" id="slide4">
-
-        <a href="#slide3">이전</a>
-
-        <article class="slideImgs" id="slideImg10">
-          <img class="leftImg" src="./선수제공파일/images/36.jpg" alt="">
-          <article class="more">
-            <button>more</button>
-            <p>3번째 이미지</p>
-          </article>
-        </article>
-
-        <article class="slideImgs" id="slideImg11">
-          <img class="centerImg" src="./선수제공파일/images/37.jpg" alt="">
-          <article class="more">
-            <button>more</button>
-            <p>4번째 이미지</p>
-          </article>
-        </article>
-
-        <article class="slideImgs" id="slideImg12">
-          <img class="rightImg" src="./선수제공파일/images/38.jpg" alt="">
-          <article class="more">
-            <button>more</button>
-            <p>5번째 이미지</p>
-          </article>
-        </article>
-
-        <a href="#slide5">다음</a>
-
-      </article>
-
-      <article class="slides" id="slide5">
-
-        <a href="#slide4">이전</a>
-
-        <article class="slideImgs" id="slideImg13">
-          <img class="leftImg" src="./선수제공파일/images/37.jpg" alt="">
-          <article class="more">
-            <button>more</button>
-            <p>4번째 이미지</p>
-          </article>
-        </article>
-
-        <article class="slideImgs" id="slideImg14">
-          <img class="centerImg" src="./선수제공파일/images/38.jpg" alt="">
-          <article class="more">
-            <button>more</button>
-            <p>5번째 이미지</p>
-          </article>
-        </article>
-
-        <article class="slideImgs" id="slideImg15">
-          <img class="rightImg" src="./선수제공파일/images/39.jpg" alt="">
-          <article class="more">
-            <button>more</button>
-            <p>6번째 이미지</p>
-          </article>
-        </article>
-
-        <a href="#slide6">다음</a>
-
-      </article>
-
-      <article class="slides" id="slide6">
-
-        <a href="#slide5">이전</a>
-
-        <article class="slideImgs" id="slideImg16">
-          <img class="leftImg" src="./선수제공파일/images/38.jpg" alt="">
-          <article class="more">
-            <button>more</button>
-            <p>5번째 이미지</p>
-          </article>
-        </article>
-
-        <article class="slideImgs" id="slideImg17">
-          <img class="centerImg" src="./선수제공파일/images/39.jpg" alt="">
-          <article class="more">
-            <button>more</button>
-            <p>6번째 이미지</p>
-          </article>
-        </article>
-
-        <article class="slideImgs" id="slideImg18">
-          <img class="rightImg" src="./선수제공파일/images/34.jpg" alt="">
-        </article>
-
-        <a href="#slide1">다음</a>
-
-      </article>
-    </section>
+    <div id="galleryContainer">
+      <h1>gallery</h1>
+    </div>
+    <div id="gallery">
+      <div id="gallery1">
+        <a href="#gallery1">이전</a>
+        <div class="imgWhite"></div>
+        <div class="img1">
+          <p>1번 이미지<br><button>more</button></p>
+        </div>
+        <div class="img2">
+          <p>2번 이미지<br><button>more</button></p>
+        </div>
+        <a href="#gallery2">다음</a>
+      </div>
+      <div id="gallery2">
+        <a href="#gallery1">이전</a>
+        <div class="img1">
+          <p>1번 이미지<br><button>more</button></p>
+        </div>
+        <div class="img2">
+          <p>2번 이미지<br><button>more</button></p>
+        </div>
+        <div class="img3">
+          <p>3번 이미지<br><button>more</button></p>
+        </div>
+        <a href="#gallery3">다음</a>
+      </div>
+      <div id="gallery3">
+        <a href="#gallery2">이전</a>
+        <div class="img2">
+          <p>2번 이미지<br><button>more</button></p>
+        </div>
+        <div class="img3">
+          <p>3번 이미지<br><button>more</button></p>
+        </div>
+        <div class="img4">
+          <p>4번 이미지<br><button>more</button></p>
+        </div>
+        <a href="#gallery4">다음</a>
+      </div>
+      <div id="gallery4">
+        <a href="#gallery3">이전</a>
+        <div class="img3">
+          <p>3번 이미지<br><button>more</button></p>
+        </div>
+        <div class="img4">
+          <p>4번 이미지<br><button>more</button></p>
+        </div>
+        <div class="img5">
+          <p>5번 이미지<br><button>more</button></p>
+        </div>
+        <a href="#gallery5">다음</a>
+      </div>
+      <div id="gallery5">
+        <a href="#gallery4">이전</a>
+        <div class="img4">
+          <p>4번 이미지<br><button>more</button></p>
+        </div>
+        <div class="img5">
+          <p>5번 이미지<br><button>more</button></p>
+        </div>
+        <div class="img6">
+          <p>6번 이미지<br><button>more</button></p>
+        </div>
+        <a href="#gallery6">다음</a>
+      </div>
+      <div id="gallery6">
+        <a href="#gallery5">이전</a>
+        <div class="img5">
+          <p>5번 이미지<br><button>more</button></p>
+        </div>
+        <div class="img6">
+          <p>6번 이미지<br><button>more</button></p>
+        </div>
+        <div class="img1">
+          <p>1번 이미지<br><button>more</button></p>
+        </div>
+        <a href="#gallery1">다음</a>
+      </div>
+    </div>
 
     <hr>
 
@@ -524,7 +420,7 @@
     </section>
   </section>
 
-  <?php include("./components/footer.php")?>
+  <?php include ("./components/footer.php") ?>
 
 </body>
 
