@@ -1,6 +1,8 @@
 <?php
 include ("./api/DBconnect.php");
 
+session_start();
+
 $request = $_SERVER['REQUEST_URI'];
 $path = explode("?", $request);
 $path[1] = isset ($path[1]) ? $path[1] : null;
@@ -28,6 +30,9 @@ switch ($resource[1]) {
         break;
     case 'signin':
         $pages = './pages/signin.php';
+        break;
+    case 'logout':
+        $pages = './pages/logout.php';
         break;
     default:
         echo "ㄴㄴ";
