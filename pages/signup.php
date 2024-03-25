@@ -69,7 +69,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset ($_GET['check_username'])) {
 </head>
 
 <body>
-    <!-- <?php include ("./components/header.php") ?> -->
+    <?php include ("./components/header.php") ?>
 
 
     <section id="signupContainer">
