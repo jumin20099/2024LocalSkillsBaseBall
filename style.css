@@ -439,6 +439,11 @@ th {
     border-radius: 15px;
 }
 
+.card{
+    margin: 10px 10px;
+    width: 300px;
+}
+
 /* 모달 영역 */
 .edit-area {
     width: 100%;
@@ -450,4 +455,12 @@ th {
 
 .edit-tools {
     margin-top: 10px;
+}
+
+#chartArea{
+    border: solid black 2px;
+    border-radius: 5px;
+    margin: 30px 30px;
+    width: 1050px;
+    height: 200px;
 }

@@ -25,7 +25,7 @@ async function fetchVisitor() {
       Object.entries(visitorData).forEach(([time, count]) => {
         const percentage = (count / 500) * 100;
         const bar = $(`
-            <div class="d-flex align-items-center" style="margin-bottom: 10px;">
+            <div class="d-flex align-items-center" style="margin-top: 50px;">
                 <div style="width: ${percentage}%; min-width: 20px; height: 20px; background-color: #007bff; color: white;">${count}</div>
                 <span class="ml-2">${time}</span>
             </div>
@@ -41,7 +41,7 @@ async function fetchVisitor() {
       Object.entries(visitorData).forEach(([time, count]) => {
         const barHeight = (count / 500) * 200;
         const bar = $(`
-            <div class="d-flex flex-column align-items-center" style="margin-right: 10px;">
+            <div class="d-flex flex-column align-items-center" style="margin: 0px 25px 0px 25px;">
             <div class="bar" style="width: 50px; height: ${barHeight}px; background-color: #007bff; color: white; display: flex; align-items: flex-end; justify-content: center;">${count}</div>
             <span>${time}</span>
             </div>
