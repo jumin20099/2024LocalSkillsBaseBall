@@ -57,7 +57,7 @@
 
     <article id="infoTitle">
       <p>Skills baseball park</p>
-      <a href="infomation">Infomation</a>
+      <a href="information">Information</a>
     </article>
 
     <hr style="margin: 150px 0px 150px 0px;">
