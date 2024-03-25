@@ -524,7 +524,7 @@
     </section>
   </section>
 
-  <?php include("./componets/footer.php")?>
+  <?php include("./components/footer.php")?>
 
 </body>
 
