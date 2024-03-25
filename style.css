@@ -484,3 +484,11 @@ th {
     margin: 5px 5px 5px 5px;
     font-weight: 900;
 }
+
+#userRank{
+    font-size: 20px;
+}
+
+#userRank>span{
+    font-weight: 900;
+}
