@@ -1,7 +1,12 @@
 <?php
-$host = "127.0.0.1";
-$username = "root";
-$dbname = "SkillsBaseballPark";
+$host = 'localhost';
+$db_name = 'skillsbaseballpark';
+$user_name = 'root';
+$password = '';
 
-$pdo = new PDO("mysql:host=$host;user=$username;dbname=$dbname");
+try {
+    $pdo = new PDO("mysql:host=$host;dbname=$db_name;",$user_name,$password);
+} catch (PDOException $e) {
+    echo "<script>alert('데이터베이스 연결 실패 ". addslashes($e->getMessage())."');</script>";
+}
 ?>
