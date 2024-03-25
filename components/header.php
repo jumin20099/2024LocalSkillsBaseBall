@@ -10,8 +10,16 @@
     </article>
     <article id="rightArticle">
         <ul>
-            <li><a href="signin">로그인</a></li>
-            <li><a href="signup">회원가입</a></li>
+            <?php
+            if (isset ($_SESSION["user_idx"])) {
+                echo "<li class='logout'><a id='logout' href='logout'>로그아웃</a></li>";
+                echo "<li><a href='signup'>회원가입</a></li>";
+            } else {
+                echo "
+                <li><a href='signin'>로그인</a></li>
+                <li><a href='signup'>회원가입</a></li>";
+            }
+            ?>
         </ul>
     </article>
 </header>
