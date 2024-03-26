@@ -203,6 +203,15 @@ th {
     font-size: 25px;
 }
 
+#resTable{
+    text-align: center;
+    margin: 0 auto;
+    width: 900px;
+    height: 500px;
+    font-size: 25px;
+    margin-top: 200px;
+}
+
 #modal {
     position: fixed;
     width: 100%;
@@ -553,4 +562,8 @@ th {
 
 #userRank>span{
     font-weight: 900;
+}
+
+#selectedDate{
+    margin-bottom: 7px;
 }
