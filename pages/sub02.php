@@ -10,7 +10,7 @@
 </head>
 
 <body>
-    <?php include("./components/header.php") ?>
+    <?php include ("./components/header.php") ?>
 
     <div id="statisticsContainer" class="container mt-5">
         <div id="controls" class="mb-3">
@@ -47,7 +47,7 @@
         <div id="goodsList"></div>
     </div>
 
-    <?php include("./components/footer.php") ?>
+    <?php include ("./components/footer.php") ?>
 
     <!-- 사진 편집 영역 -->
     <!-- Modal -->
@@ -85,10 +85,12 @@
     <script src="./선수제공파일/bootstrap-5.2.0-dist/js/bootstrap.js"></script>
     <script src="./script.js"></script>
     <script>
-        $(document).ready(function() {
-            initBaseballParkChart();
-            goodsInit();
+        // 페이지 로드 시 호출
+        $(document).ready(function () {
+            initBaseballParkChart(); // 야구장 차트 초기화
+            goodsInit(); // 상품 초기화
         });
+
     </script>
 
 </body>
