@@ -1,3 +1,27 @@
+<?php
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $league = $_POST['league'];
+    $game_time = $_POST['time'];
+    $game_date = ['selectedDate'];
+    $min_user = $_POST['minPlayers'];
+    $price = ['totalPrice'];
+
+    // 결제승인 목록은 예약자ID, 예약자 이름, 리그, 날짜, 시간, 최소인원, 사용료, 결제상태, 결재승인버튼이 있다.
+    if (isset ($_SESSION["user_idx"])){
+        $sql = "INSERT INTO reservation (league, game_time, min_user) VALUES (?, ?, ?)";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([$league, $game_time, $min_user]); // 변수들을 바인딩하여 실행
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+        echo('성공');
+    } else{
+        echo ('좆까');
+    }
+
+    // echo json_encode($game_date);
+    // echo ($price);
+}
+?>
+
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -12,7 +36,7 @@
 </head>
 
 <body>
-    <?php include ("./components/header.php") ?>
+    <!-- <?php include("./components/header.php") ?> -->
 
     <article id="gameTable">
         <table id="resTable">
@@ -101,13 +125,13 @@
                         <label for="players">최소인원 : </label>
                         <input onchange="feeCalculator(document.getElementById('league'), this)" type="number" id="minPlayers" name="minPlayers" value="20" min="20"><br>
                         <div id="feeCalculateResult">
-                        
+
                         </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
                     <?php
-                    if (isset ($_SESSION["user_idx"])) {
+                    if (isset($_SESSION["user_idx"])) {
                         echo "<button type='submit' class='btn btn-primary'>예약하기</button>";
                     } else {
                         echo "<button type='submit' disabled class='btn btn-primary'>로그인 후 예약 가능합니다</button>";
@@ -119,7 +143,7 @@
         </div>
     </div>
 
-    <?php include ("./components/footer.php") ?>
+    <?php include("./components/footer.php") ?>
 
     <script src="./선수제공파일/bootstrap-5.2.0-dist/js/bootstrap.js"></script>
     <script src="./script.js"></script>

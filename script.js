@@ -285,7 +285,10 @@ function goodsEdit(elem) {
 
 
 function reservationModal(e) {
-  document.getElementById('selectedDate').innerText = '선택하신 날짜 : ' + e.innerText + '일';
+
+  let selectedDate = e.innerText;
+  document.getElementById('selectedDate').innerText = '선택하신 날짜 : ' + selectedDate + '일';
+  console.log(selectedDate);
   $(".modal").modal("show");
 
 }
@@ -314,10 +317,8 @@ function feeCalculator(leagueElement, minPlayersElement) {
       break;
   }
 
-  price = price + (people - 20) * 1000;
+  let totalPrice = price + (people - 20) * 1000;
 
-  document.getElementById('feeCalculateResult').innerText = '사용료 : ' + price + "원";
-
-  // console.log(people);
-  // console.log(price);
+  document.getElementById('feeCalculateResult').innerText = '사용료 : ' + totalPrice + '원';
+  console.log(totalPrice);
 }
