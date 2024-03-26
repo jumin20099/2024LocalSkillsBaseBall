@@ -12,7 +12,7 @@
 </head>
 
 <body>
-    <!-- <?php include ("./components/header.php") ?> -->
+    <?php include ("./components/header.php") ?>
 
     <article id="gameTable">
         <table id="resTable">
@@ -85,7 +85,6 @@
                     <form id="reservationForm" action="" method="POST">
                         <label for="league">리그 선택 : </label>
                         <select id="league" name="league" onchange="feeCalculator(this, document.getElementById('minPlayers'))">
-                            <option value="#">리그를 선택해 주세요</option>
                             <option value="night">나이트 리그</option>
                             <option value="weekend">주말 리그</option>
                             <option value="dawn">새벽 리그</option>
@@ -94,7 +93,11 @@
 
                         </div>
                         <label for="time">시간 : </label>
-                        <input type="time" id="time" name="time"><br>
+                        <select id="reservationTime" name="time">
+                            <option name="time" value="12">12</option>
+                            <option name="time" value="13">13</option>
+                            <option name="time" value="14">14</option>
+                        </select><br>
                         <label for="players">최소인원 : </label>
                         <input onchange="feeCalculator(document.getElementById('league'), this)" type="number" id="minPlayers" name="minPlayers" value="20" min="20"><br>
                         <div id="feeCalculateResult">
