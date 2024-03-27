@@ -2,23 +2,24 @@
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $league = $_POST['league'];
     $game_time = $_POST['time'];
-    $game_date = ['selectedDate'];
+    $game_date = $_POST['selectedDate'];
     $min_user = $_POST['minPlayers'];
-    $price = ['totalPrice'];
+    $price = $_POST['totalPrice'];
+    $user_idx = $_SESSION["user_idx"];
+    $now = date("Y-m-d");
 
-    // 결제승인 목록은 예약자ID, 예약자 이름, 리그, 날짜, 시간, 최소인원, 사용료, 결제상태, 결재승인버튼이 있다.
-    if (isset ($_SESSION["user_idx"])){
-        $sql = "INSERT INTO reservation (league, game_time, min_user) VALUES (?, ?, ?)";
-        $stmt = $pdo->prepare($sql);
-        $stmt->execute([$league, $game_time, $min_user]); // 변수들을 바인딩하여 실행
-        $user = $stmt->fetch(PDO::FETCH_ASSOC);
-        echo('성공');
-    } else{
-        echo ('좆까');
-    }
+    // reservation 테이블에 데이터 삽입
+    $sql = "INSERT INTO reservation (league, game_time, game_date, min_user, price, user_idx) VALUES (?, ?, ?, ?, ?, ?)";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute([$league, $game_time, $game_date, $min_user, $price, $user_idx]);
+    
+    // 예약된 정보 업데이트
+    $update_sql = "UPDATE reservation SET reservated_date = :reservated_date WHERE user_idx = :user_idx";
+    $update_stmt = $pdo->prepare($update_sql);
+    $update_stmt->bindParam(":reservated_date", $now);
+    $update_stmt->bindParam(":user_idx", $user_idx);
+    $update_stmt->execute();
 
-    // echo json_encode($game_date);
-    // echo ($price);
 }
 ?>
 
@@ -36,7 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 
 <body>
-    <!-- <?php include("./components/header.php") ?> -->
+    <!-- <?php include ("./components/header.php") ?> -->
 
     <article id="gameTable">
         <table id="resTable">
@@ -108,10 +109,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div class="modal-body">
                     <form id="reservationForm" action="" method="POST">
                         <label for="league">리그 선택 : </label>
-                        <select id="league" name="league" onchange="feeCalculator(this, document.getElementById('minPlayers'))">
-                            <option value="night">나이트 리그</option>
-                            <option value="weekend">주말 리그</option>
-                            <option value="dawn">새벽 리그</option>
+                        <select id="league" name="league"
+                            onchange="feeCalculator(this, document.getElementById('minPlayers'))">
+                            <option value="나이트리그">나이트리그</option>
+                            <option value="주말리그">주말리그</option>
+                            <option value="새벽리그">새벽리그</option>
                         </select><br>
                         <div id="selectedDate">
 
@@ -123,7 +125,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             <option name="time" value="14">14</option>
                         </select><br>
                         <label for="players">최소인원 : </label>
-                        <input onchange="feeCalculator(document.getElementById('league'), this)" type="number" id="minPlayers" name="minPlayers" value="20" min="20"><br>
+                        <input onchange="feeCalculator(document.getElementById('league'), this)" type="number"
+                            id="minPlayers" name="minPlayers" value="20" min="20"><br>
+                        <input type="hidden" id="selectedDateInput" name="selectedDate" value="" />
+                        <input type="hidden" id="totalPriceInput" name="totalPrice" value="" />
                         <div id="feeCalculateResult">
 
                         </div>
@@ -131,7 +136,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
                     <?php
-                    if (isset($_SESSION["user_idx"])) {
+                    if (isset ($_SESSION["user_idx"])) {
                         echo "<button type='submit' class='btn btn-primary'>예약하기</button>";
                     } else {
                         echo "<button type='submit' disabled class='btn btn-primary'>로그인 후 예약 가능합니다</button>";
@@ -143,7 +148,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
     </div>
 
-    <?php include("./components/footer.php") ?>
+    <?php include ("./components/footer.php") ?>
 
     <script src="./선수제공파일/bootstrap-5.2.0-dist/js/bootstrap.js"></script>
     <script src="./script.js"></script>
