@@ -8,7 +8,20 @@ $reservations = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
 
-<div id="reservationContainer">
+<table id="reservationTable">
+    <tr>
+        <th>체크박스</th>
+        <th>예약자ID</th>
+        <th>예약자 이름</th>
+        <th>리그</th>
+        <th>날짜</th>
+        <th>시간</th>
+        <th>최소인원</th>
+        <th>사용료</th>
+        <th>예약가능여부</th>
+        <th>예약승인버튼</th>
+        <th>삭제버튼</th>
+    </tr>
     <?php
     if ($reservations) {
         foreach ($reservations as $reservation) {
@@ -35,28 +48,30 @@ $reservations = $stmt->fetchAll(PDO::FETCH_ASSOC);
             // 예약 목록은 체크박스, 예약자ID, 예약자 이름, 리그, 날짜, 시간, 최소인원, 사용료, 예약가능여부, 예약승인버튼, 삭제버튼이 있다
             // 이즈 레저베이티드 = 불리언 말고 이넘 3가지
             // 결제 상태도 추가 , 이넘3
-            
+
             $divInnerText = "";
-            $divInnerText .= "<div class='post'>";
-            $divInnerText .= "<p class='id'> 예약자 ID : " . $user["username"] . "</p>";
-            $divInnerText .= "<p class='id'> 예약자 이름 : " . $user["name"] . "</p>";
-            $divInnerText .= "<p class='id'> 리그 : " . $reservation["league"] . "</p>";
-            $divInnerText .= "<p class='id'> 날짜 : " . $reservation["reservated_date"] . "</p>";
-            $divInnerText .= "<p class='id'> 시간 : " . $reservation["game_time"] . "시" . "</p>";
-            $divInnerText .= "<p class='id'> 최소인원 : " . $reservation["min_user"] . "</p>";
-            $divInnerText .= "<p class='id'> 사용료 : " . $reservation["price"] . "원" . "</p>";
+            $divInnerText .= "<tr>" . "</tr>";
+            $divInnerText .= "<td><input type='checkbox' id='reservationCheckBox'></td>";
+            $divInnerText .= "<td>" . $user["username"] . "</td>";
+            $divInnerText .= "<td>" . $user["name"] . "</td>";
+            $divInnerText .= "<td>" . $reservation["league"] . "</td>";
+            $divInnerText .= "<td>" . $reservation["reservated_date"] . "</td>";
+            $divInnerText .= "<td>" . $reservation["game_time"] . "시" . "</td>";
+            $divInnerText .= "<td>" . $reservation["min_user"] . "명" . "</td>";
+            $divInnerText .= "<td>" . $reservation["price"] . "원" . "</td>";
             if ($reservation["is_reservated"] == "예약 가능") {
-                $divInnerText .= "<p class='id'> 예약가능여부 : " . $reservation["is_reservated"] . "</p>";
+                $divInnerText .= "<td>" . $reservation["is_reservated"] . "</td>";
             } else {
-                $divInnerText .= "<p class='id'> 예약가능여부 : 승인 불가" . "</p>";
+                $divInnerText .= "<td>승인 불가</td>";
             }
-            $divInnerText .= "</div>";
+            $divInnerText .= "<td><button>승인</button></td>";
+            $divInnerText .= "<td><button>삭제</button></td>";
             $divInnerText .= "<br>";
             echo $divInnerText;
         }
     }
     ?>
-</div>
+</table>
 <!DOCTYPE html>
 <html lang="ko">
 
