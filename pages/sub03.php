@@ -1,4 +1,18 @@
 <?php
+if ($_SESSION["username"] == "admin"){
+    echo "
+    <script>
+    location.href='sub03_admin'
+    </script>";
+}
+
+if ($_SESSION["username"] == "manager"){
+    echo "
+    <script>
+    location.href='sub03_manager'
+    </script>";
+}
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $league = $_POST['league'];
     $game_time = $_POST['time'];

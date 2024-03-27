@@ -1,11 +1,11 @@
 <?php
-include("./api/DBconnect.php");
+include ("./api/DBconnect.php");
 
 session_start();
 
 $request = $_SERVER['REQUEST_URI'];
 $path = explode("?", $request);
-$path[1] = isset($path[1]) ? $path[1] : null;
+$path[1] = isset ($path[1]) ? $path[1] : null;
 $resource = explode("/", $path[0]);
 
 $pages = "";
@@ -39,8 +39,16 @@ switch ($resource[1]) {
         $pages = './pages/mypage.php';
         break;
 
+    case 'sub03_admin':
+        $pages = './pages/sub03_admin.php';
+        break;
+
+    case 'sub03_manager':
+        $pages = './pages/sub03_manager.php';
+        break;
+
     default:
         echo "ㄴㄴ";
         return 0;
 }
-include($pages);
+include ($pages);
