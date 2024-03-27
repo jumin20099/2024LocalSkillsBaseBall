@@ -287,7 +287,6 @@ function goodsEdit(elem) {
 function reservationModal(e) {
   let selectedDate = e.innerText;
   document.getElementById('selectedDate').innerText = '선택하신 날짜 : ' + selectedDate + '일';
-  document.getElementById('selectedDateInput').value = selectedDate;
   console.log(document.getElementById('selectedDateInput').value);
   $(".modal").modal("show");
 

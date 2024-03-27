@@ -16,16 +16,15 @@ if ($_SESSION["username"] == "manager"){
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $league = $_POST['league'];
     $game_time = $_POST['time'];
-    $game_date = $_POST['selectedDate'];
     $min_user = $_POST['minPlayers'];
     $price = $_POST['totalPrice'];
     $user_idx = $_SESSION["user_idx"];
     $now = date("Y-m-d");
 
     // reservation 테이블에 데이터 삽입
-    $sql = "INSERT INTO reservation (league, game_time, game_date, min_user, price, user_idx) VALUES (?, ?, ?, ?, ?, ?)";
+    $sql = "INSERT INTO reservation (league, game_time, min_user, price, user_idx) VALUES (?, ?, ?, ?, ?)";
     $stmt = $pdo->prepare($sql);
-    $stmt->execute([$league, $game_time, $game_date, $min_user, $price, $user_idx]);
+    $stmt->execute([$league, $game_time, $min_user, $price, $user_idx]);
     
     // 예약된 정보 업데이트
     $update_sql = "UPDATE reservation SET reservated_date = :reservated_date WHERE user_idx = :user_idx";
