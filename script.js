@@ -299,27 +299,25 @@ function feeCalculator(leagueElement, minPlayersElement) {
   let price = 0;
 
   switch (league) {
-    case "night":
+    case "나이트리그":
       price = 50000;
       break;
 
-    case "weekend":
+    case "주말리그":
       price = 100000;
       break;
 
-    case "dawn":
+    case "새벽리그":
       price = 30000;
-      break;
-
-    case "리그를 선택해 주세요":
-      alert("리그를 선택해 주세요");
       break;
   }
 
-  let totalPrice = price + (people - 20) * 1000;
+  let totalPrice = (people) * 1000 + price;
+  totalPrice = totalPrice - 20000;
 
   document.getElementById('totalPriceInput').value = totalPrice;
 
   document.getElementById('feeCalculateResult').innerText = '사용료 : ' + totalPrice + '원';
-  console.log(document.getElementById('totalPriceInput').value);
+  console.log(totalPrice);
+  console.log(price)
 }
