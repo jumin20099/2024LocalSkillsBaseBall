@@ -86,7 +86,7 @@ $reservations = $stmt->fetchAll(PDO::FETCH_ASSOC);
 </head>
 
 <body>
-    <!-- <?php include("./components/header.php") ?> -->
+    <?php include("./components/header.php") ?>
 
     <?php include("./components/footer.php") ?>
 

@@ -571,6 +571,7 @@ th {
 #reservationTable{
     margin: 0 auto;
     text-align: center;
+    margin: 250px 250px;
 }
 
 tbody>tr>td{
