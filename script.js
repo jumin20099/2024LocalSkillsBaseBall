@@ -299,15 +299,15 @@ function feeCalculator(leagueElement, minPlayersElement) {
   let price = 0;
 
   switch (league) {
-    case "night":
+    case "나이트리그":
       price = 50000;
       break;
 
-    case "weekend":
+    case "주말리그":
       price = 100000;
       break;
 
-    case "dawn":
+    case "새벽리그":
       price = 30000;
       break;
 
@@ -317,6 +317,9 @@ function feeCalculator(leagueElement, minPlayersElement) {
   }
 
   let totalPrice = price + (people - 20) * 1000;
+  
+  console.log(price)
+  console.log(totalPrice)
 
   document.getElementById('totalPriceInput').value = totalPrice;
 
