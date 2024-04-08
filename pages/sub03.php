@@ -133,9 +133,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         </div>
                         <label for="time">시간 : </label>
                         <select id="reservationTime" name="time">
-                            <option name="time" value="12">12</option>
-                            <option name="time" value="13">13</option>
-                            <option name="time" value="14">14</option>
+                            <option id="firstGame" name="time">19시</option>
+                            <option id="secondGame" name="time">23시</option>
+                            <option id="thirdGame" name="time">15시</option>
                         </select><br>
                         <label for="players">최소인원 : </label>
                         <input onchange="feeCalculator(document.getElementById('league'), this)" type="number"
