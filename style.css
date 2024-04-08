@@ -188,7 +188,6 @@ footer {
     line-height: 645px;
 }
 
-table,
 td,
 th {
     border-collapse: collapse;
@@ -569,11 +568,16 @@ th {
 }
 
 #reservationTable{
-    margin: 0 auto;
+    display: flex;
+    justify-content: center;
     text-align: center;
-    margin: 250px 250px;
+    margin: 250px 0px 250px 0px;
 }
 
 tbody>tr>td{
     width: 150px;
+}
+
+#thirdGame{
+    display: none;
 }
