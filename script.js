@@ -296,19 +296,30 @@ function reservationModal(e) {
 function feeCalculator(leagueElement, minPlayersElement) {
   const people = minPlayersElement.value;
   const league = leagueElement.value;
+  const firstGame = document.getElementById("firstGame")
+  const secondGame = document.getElementById("secondGame")
+  const thirdGame = document.getElementById("thirdGame")
+
   let price = 0;
 
   switch (league) {
     case "나이트리그":
       price = 50000;
+      thirdGame.style.display="none";
       break;
 
     case "주말리그":
       price = 100000;
+      firstGame.innerText="09시";
+      secondGame.innerText="13시";
+      thirdGame.style.display="block";
       break;
 
     case "새벽리그":
       price = 30000;
+      firstGame.innerText="04시";
+      secondGame.innerText="07시";
+      thirdGame.style.display="none";
       break;
 
     case "리그를 선택해 주세요":
