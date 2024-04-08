@@ -1,10 +1,42 @@
 <?php
-$resSql = "SELECT * FROM reservation INNER JOIN user ON reservation.user_idx = user.user_idx WHERE is_deleted = 0 ORDER BY reservation_idx DESC";
-$userSql = "SELECT * FROM user WHERE user_idx = :user_idx";
+$resSql = "SELECT *
+FROM reservation
+INNER JOIN user
+ON reservation.user_idx = user.user_idx
+WHERE is_deleted = 0
+AND reservation_status = '승인대기'
+ORDER BY reservation_idx DESC";
+
+$userSql = "SELECT *
+FROM user
+WHERE user_idx = :user_idx";
 
 $stmt = $pdo->prepare($resSql);
 $stmt->execute();
 $reservations = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+if($_SERVER["REQUEST_METHOD"] == "POST"){
+    if ($reservation["is_reservated"] == '승인 불가') {
+        $deleteSql2 = "UPDATE reservation SET is_deleted = 1 WHERE is_reservated = '승인불가'";
+        $stmt2 = $pdo->prepare($deleteSql2);
+        $stmt2->execute();
+    }
+}
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $reservationId = $_POST["reservation_idx"];
+
+    $deleteSql = "UPDATE reservation SET is_deleted = 1 WHERE reservation_idx = :reservation_id";
+    $stmt = $pdo->prepare($deleteSql);
+    $stmt->bindParam(":reservation_id", $reservationId);
+    $stmt->execute();
+    
+    echo "
+    <script>
+    location.href='sub03_manager';
+    </script>
+    ";
+}
 
 ?>
 
@@ -29,7 +61,13 @@ $reservations = $stmt->fetchAll(PDO::FETCH_ASSOC);
             $reservated_date = $reservation['reservated_date'];
             $game_time = $reservation['game_time'];
 
-            $approvedReservationSql = "SELECT * FROM reservation WHERE league = :league AND reservated_date = :reservated_date AND game_time = :game_time AND reservation_status = '승인완료' AND is_deleted = '0'";
+            $approvedReservationSql = "SELECT *
+            FROM reservation
+            WHERE league = :league
+            AND reservated_date = :reservated_date
+            AND game_time = :game_time
+            AND is_deleted = '0'";
+
             $stmtApprovedReservations = $pdo->prepare($approvedReservationSql);
             $stmtApprovedReservations->bindParam(":league", $league);
             $stmtApprovedReservations->bindParam(":reservated_date", $reservated_date);
@@ -44,30 +82,29 @@ $reservations = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
             $reservationUser_idx = isset($reservation["user_idx"]) ? $reservation["user_idx"] : '';
 
-
-            // 예약 목록은 체크박스, 예약자ID, 예약자 이름, 리그, 날짜, 시간, 최소인원, 사용료, 예약가능여부, 예약승인버튼, 삭제버튼이 있다
-            // 이즈 레저베이티드 = 불리언 말고 이넘 3가지
-            // 결제 상태도 추가 , 이넘3
-
-            $divInnerText = "";
-            $divInnerText .= "<tr>" . "</tr>";
-            $divInnerText .= "<td><input type='checkbox' id='reservationCheckBox'></td>";
-            $divInnerText .= "<td>" . $user["username"] . "</td>";
-            $divInnerText .= "<td>" . $user["name"] . "</td>";
-            $divInnerText .= "<td>" . $reservation["league"] . "</td>";
-            $divInnerText .= "<td>" . $reservation["reservated_date"] . "</td>";
-            $divInnerText .= "<td>" . $reservation["game_time"] . "시" . "</td>";
-            $divInnerText .= "<td>" . $reservation["min_user"] . "명" . "</td>";
-            $divInnerText .= "<td>" . $reservation["price"] . "원" . "</td>";
+            // 예약 목록 출력
+            echo "<tr>";
+            echo "<td><input type='checkbox' id='reservationCheckBox'></td>";
+            echo "<td>" . $user["username"] . "</td>";
+            echo "<td>" . $user["name"] . "</td>";
+            echo "<td>" . $reservation["league"] . "</td>";
+            echo "<td>" . $reservation["reservated_date"] . "</td>";
+            echo "<td>" . $reservation["game_time"] . "시" . "</td>";
+            echo "<td>" . $reservation["min_user"] . "명" . "</td>";
+            echo "<td>" . $reservation["price"] . "원" . "</td>";
             if ($reservation["is_reservated"] == "예약 가능") {
-                $divInnerText .= "<td>" . $reservation["is_reservated"] . "</td>";
+                echo "<td>예약 가능</td>";
+                echo "<form action='' method='post'>";
+                echo "<td><button>승인</button></td>";
+                echo "</form>";
             } else {
-                $divInnerText .= "<td>승인 불가</td>";
+                echo "<td>승인 불가</td>";
+                echo "<td>승인 불가</td>";
             }
-            $divInnerText .= "<td><button>승인</button></td>";
-            $divInnerText .= "<td><button>삭제</button></td>";
-            $divInnerText .= "<br>";
-            echo $divInnerText;
+            echo "<form action='' method='post'>";
+            echo "<td><button type='submit' name='reservation_idx' value='".$reservation['reservation_idx']."'>삭제</button></td>";
+            echo "</form>";
+            echo "</tr>";
         }
     }
     ?>
@@ -86,7 +123,7 @@ $reservations = $stmt->fetchAll(PDO::FETCH_ASSOC);
 </head>
 
 <body>
-    <?php include("./components/header.php") ?>
+    <!-- <?php include("./components/header.php") ?> -->
 
     <?php include("./components/footer.php") ?>
 
