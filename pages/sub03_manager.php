@@ -16,48 +16,53 @@ $stmt->execute();
 $reservations = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if (isset($_POST["approve_reservation_idx"])) { // 승인 기능
-        $reservation_id = $_POST["approve_reservation_idx"];
-        $approveSql = "UPDATE reservation SET reservation_status = '승인완료' WHERE reservation_idx = :reservation_id";
-        $approveStmt = $pdo->prepare($approveSql);
-        $approveStmt->bindParam(':reservation_id', $reservation_id);
-        $approveStmt->execute();
-        header("Location: /sub03_manager");
-        exit();
-    }
+    $action = $_POST["action"] ?? null; // action 값 확인
 
-    if (isset($_POST["deleteAllReservations"])) { // 전체 삭제 기능
-        if (isset($_POST['delete_checkboxes'])) {
-            foreach ($_POST['delete_checkboxes'] as $delete_reservation_id) {
-                $deleteSql = "UPDATE reservation SET is_deleted = 1 WHERE reservation_idx = :reservation_id and reservation_status = '승인 불가'";
-                $stmt = $pdo->prepare($deleteSql);
-                $stmt->bindParam(":reservation_id", $delete_reservation_id);
-                $stmt->execute();
-            }
+    // 승인 기능
+    if ($action === "approve") {
+        if (isset($_POST["approve_reservation_idx"])) {
+            echo "삭제2";
+            $reservation_id = $_POST["approve_reservation_idx"];
+            $approveSql = "UPDATE reservation SET reservation_status = '승인완료' WHERE reservation_idx = :reservation_id";
+            $approveStmt = $pdo->prepare($approveSql);
+            $approveStmt->bindParam(':reservation_id', $reservation_id);
+            $approveStmt->execute();
             header("Location: /sub03_manager");
             exit();
         }
     }
-
-    if (isset($_POST["delete_reservation_idx"])) { // 삭제 기능
+    
+    // 삭제 기능
+    if ($action === "delete") {
+        if (isset($_POST["delete_reservation_idx"])) {
+        // 삭제할 예약의 reservation_idx 가져오기
         $reservationIdx = $_POST["delete_reservation_idx"];
-        $deleteSql = "UPDATE reservation SET is_deleted = 1 WHERE reservation_idx = :reservation_id";
-        $stmt = $pdo->prepare($deleteSql);
-        $stmt->bindParam(":reservation_id", $reservationIdx);
-        $stmt->execute();
+
+        // is_reservated가 "승인 불가"인 모든 예약의 reservation_idx 가져오기
+        $deleteAllSql = "SELECT reservation_idx FROM reservation WHERE is_reservated = '승인 불가' AND is_deleted = 0";
+        $stmtDeleteAll = $pdo->prepare($deleteAllSql);
+        $stmtDeleteAll->execute();
+        $deleteReservationIdxList = $stmtDeleteAll->fetchAll(PDO::FETCH_COLUMN);
+
+        // 가져온 reservation_idx를 이용하여 삭제 쿼리 실행
+        foreach ($deleteReservationIdxList as $deleteReservationIdx) {
+            $deleteSql = "UPDATE reservation SET is_deleted = 1 WHERE reservation_idx = :reservation_id";
+            $stmt = $pdo->prepare($deleteSql);
+            $stmt->bindParam(":reservation_id", $deleteReservationIdx);
+            $stmt->execute();
+        }
+
+        // 삭제 후 리다이렉트
         header("Location: /sub03_manager");
         exit();
+        }
     }
 }
 ?>
 
 <table id="reservationTable">
     <tr>
-        <th>
-            <form id="deleteForm" action="" method="post">
-                <button type="button" id="deleteAllReservations">체크박스 전체 삭제</button>
-            </form>
-        </th>
+        <th>체크박스</th>
         <th>예약자ID</th>
         <th>예약자 이름</th>
         <th>리그</th>
@@ -97,7 +102,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             // 예약 목록 출력
             echo "<tr>";
-            echo "<td><input type='checkbox' class='delete_checkbox' name='delete_checkboxes[]' value='" . $reservation['reservation_idx'] . "'></td>";
+            if($reservation["is_reservated"] == "승인 불가"){
+                echo "<td><form id='deleteForm' action='' method='post'><input type='hidden' name='action' value='deleteAll'><input type='checkbox' class='delete_checkbox' name='delete_checkboxes[]' value='" . $reservation['reservation_idx'] . "'></form></td>";
+            } else{
+                echo "<td></td>";
+            }
             echo "<td>" . $user["username"] . "</td>";
             echo "<td>" . $user["name"] . "</td>";
             echo "<td>" . $reservation["league"] . "</td>";
@@ -108,6 +117,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if ($reservation["is_reservated"] == "예약 가능") {
                 echo "<td>예약 가능</td>";
                 echo "<form action='' method='post'>";
+                echo "<input type='hidden' name='action' value='approve'>";
                 echo "<td><button type='submit' name='approve_reservation_idx' value='" . $reservation['reservation_idx'] . "'>승인</button></td>";
                 echo "</form>";
             } else {
@@ -115,6 +125,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 echo "<td>승인 불가</td>";
             }
             echo "<form action='' method='post'>";
+            echo "<input type='hidden' name='action' value='delete'>";
             echo "<td><button type='submit' name='delete_reservation_idx' value='" . $reservation['reservation_idx'] . "'>삭제</button></td>";
             echo "</form>";
             echo "</tr>";
@@ -139,88 +150,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <!-- <?php include("./components/header.php") ?> -->
     <?php include("./components/footer.php") ?>
 
-    <table id="reservationTable">
-        <tr>
-            <th>
-                <form id="deleteForm" action="" method="post">
-                    <button type="submit" id="deleteAllReservations" name="deleteAllReservations">체크박스 전체 삭제</button>
-                </form>
-            </th>
-            <th>예약자ID</th>
-            <th>예약자 이름</th>
-            <th>리그</th>
-            <th>날짜</th>
-            <th>시간</th>
-            <th>최소인원</th>
-            <th>사용료</th>
-            <th>예약가능여부</th>
-            <th>예약승인버튼</th>
-            <th>삭제버튼</th>
-        </tr>
-        <?php
-        if ($reservations) {
-            foreach ($reservations as $reservation) {
-                $league = $reservation['league'];
-                $reservated_date = $reservation['reservated_date'];
-                $game_time = $reservation['game_time'];
-
-                $approvedReservationSql = "SELECT *
-                FROM reservation
-                WHERE league = :league
-                AND reservated_date = :reservated_date
-                AND game_time = :game_time
-                AND is_deleted = '0'";
-
-                $stmtApprovedReservations = $pdo->prepare($approvedReservationSql);
-                $stmtApprovedReservations->bindParam(":league", $league);
-                $stmtApprovedReservations->bindParam(":reservated_date", $reservated_date);
-                $stmtApprovedReservations->bindParam(":game_time", $game_time);
-                $stmtApprovedReservations->execute();
-                $row = $stmtApprovedReservations->fetch(PDO::FETCH_ASSOC);
-
-                $stmtUser = $pdo->prepare($userSql);
-                $stmtUser->bindParam(":user_idx", $reservation["user_idx"]);
-                $stmtUser->execute();
-                $user = $stmtUser->fetch(PDO::FETCH_ASSOC);
-
-                // 예약 목록 출력
-                echo "<tr>";
-                echo "<td><input type='checkbox' class='delete_checkbox' name='delete_checkboxes[]' value='" . $reservation['reservation_idx'] . "'></td>";
-                echo "<td>" . $user["username"] . "</td>";
-                echo "<td>" . $user["name"] . "</td>";
-                echo "<td>" . $reservation["league"] . "</td>";
-                echo "<td>" . $reservation["reservated_date"] . "</td>";
-                echo "<td>" . $reservation["game_time"] . "</td>";
-                echo "<td>" . $reservation["min_user"] . "명" . "</td>";
-                echo "<td>" . $reservation["price"] . "원" . "</td>";
-                if ($reservation["is_reservated"] == "예약 가능") {
-                    echo "<td>예약 가능</td>";
-                    echo "<form action='' method='post'>";
-                    echo "<td><button type='submit' name='approve_reservation_idx' value='" . $reservation['reservation_idx'] . "'>승인</button></td>";
-                    echo "</form>";
-                } else {
-                    echo "<td>승인 불가</td>";
-                    echo "<td>승인 불가</td>";
-                }
-                echo "<form action='' method='post'>";
-                echo "<td><button type='submit' name='delete_reservation_idx' value='" . $reservation['reservation_idx'] . "'>삭제</button></td>";
-                echo "</form>";
-                echo "</tr>";
-            }
-        }
-        ?>
-    </table>
-
     <script src="./선수제공파일/bootstrap-5.2.0-dist/js/bootstrap.js"></script>
     <script src="./script.js"></script>
-    <script>
-        $(document).ready(function() {
-            $('#deleteAllReservations').click(function() {
-                $('.delete_checkbox').prop('checked', true);
-                $('#deleteForm').submit();
-            });
-        });
-    </script>
 </body>
 
 </html>
