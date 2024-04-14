@@ -3,7 +3,6 @@ $resSql = "SELECT *
 FROM reservation
 INNER JOIN user
 ON reservation.user_idx = user.user_idx
-WHERE is_deleted = 0
 ORDER BY reservation_idx DESC";
 
 $userSql = "SELECT *
@@ -45,7 +44,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             // 가져온 reservation_idx를 이용하여 삭제 쿼리 실행
             foreach ($deleteReservationIdxList as $deleteReservationIdx) {
-                $deleteSql = "UPDATE reservation SET is_deleted = 1 WHERE reservation_idx = :reservation_id";
+                $deleteSql = "UPDATE reservation SET is_deleted = 1,
+                              reservation_status = '승인거부',
+                              is_reservated = '승인 불가'
+                              WHERE reservation_idx = :reservation_id";
                 $stmt = $pdo->prepare($deleteSql);
                 $stmt->bindParam(":reservation_id", $deleteReservationIdx);
                 $stmt->execute();
@@ -60,6 +62,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 ?>
 
 <table id="reservationTable">
+    <h1 id="reservationList">예약 목록</h1>
     <tr>
         <th>체크박스</th>
         <th>예약자ID</th>
@@ -119,11 +122,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             echo "<td>" . $reservation["game_time"] . "</td>";
             echo "<td>" . $reservation["min_user"] . "명" . "</td>";
             echo "<td>" . $reservation["price"] . "원" . "</td>";
-            if ($reservation["reservation_status"] == "승인대기") {
-                echo "<td>예약 가능</td>";
+            if ($reservation["is_reservated"] == "예약 가능") {
+                echo '<td>';
+                echo $reservation["is_reservated"];
+                echo '</td>';
                 echo "<form action='' method='post'>";
                 echo "<input type='hidden' name='action' value='approve'>";
                 echo "<td><button type='submit' name='approve_reservation_idx' value='" . $reservation['reservation_idx'] . "'>승인</button></td>";
+                if ($reservation["is_reservated"] == '예약 가능'){
+                    echo '<td>';
+                    echo $reservation["is_reservated"];
+                    echo '</td>';
+                }
                 echo "</form>";
             }
             if ($reservation["reservation_status"] == "승인완료") {
@@ -135,11 +145,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 echo "<td>승인 불가</td>";
                 echo "<td>승인 불가</td>";
             }
-            if ($reservation["reservation_status"] != "승인완료") {
+            if ($reservation["reservation_status"] != "승인완료" and $reservation["is_reservated"] != '예약 가능') {
+                echo '<td>';
+                echo $reservation["is_reservated"];
+                echo '</td>';
+                echo '<td>';
+                echo $reservation["is_reservated"];
+                echo '</td>';
                 echo "<form action='' method='post'>";
                 echo "<input type='hidden' name='action' value='delete'>";
-                echo "<td><button type='submit' name='delete_reservation_idx' value='" . $reservation['reservation_idx'] . "'>삭제</button></td>";
+                echo "<td><button id='deleteBtn' type='submit' name='delete_reservation_idx' value='" . $reservation['reservation_idx'] . "'>삭제</button></td>";
                 echo "</form>";
+            }
+            if ($reservation["is_reservated"] == "예약 가능"){
+                echo "<script>
+                </script>";
             }
             if (!empty($duplicateReservations)) {
                 // 가장 마지막 예약을 제외한 나머지 예약 삭제
@@ -173,9 +193,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <body>
     <!-- <?php include("./components/header.php") ?> -->
-    <?php
-
-    ?>
     <?php include("./components/footer.php") ?>
 
     <script src="./선수제공파일/bootstrap-5.2.0-dist/js/bootstrap.js"></script>
