@@ -157,10 +157,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 echo "<td><button id='deleteBtn' type='submit' name='delete_reservation_idx' value='" . $reservation['reservation_idx'] . "'>삭제</button></td>";
                 echo "</form>";
             }
-            if ($reservation["is_reservated"] == "예약 가능") {
-                echo "<script>
-                </script>";
-            }
             if (!empty($duplicateReservations)) {
                 // 가장 마지막 예약을 제외한 나머지 예약 삭제
                 $lastReservationIdx = $duplicateReservations[0]["reservation_idx"];
