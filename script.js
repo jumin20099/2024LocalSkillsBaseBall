@@ -289,11 +289,6 @@ function reservationModal(e) {
   document.getElementById('selectedDate').innerText = '선택하신 날짜 : ' + selectedDate + '일';
   console.log(document.getElementById('selectedDateInput').value);
   $(".modal").modal("show");
-  totalPrice = 50000;
-  
-  document.getElementById('totalPriceInput').value = totalPrice;
-  
-  document.getElementById('feeCalculateResult').innerText = '사용료 : ' + totalPrice + '원';
 }
 
 let price = 0;
