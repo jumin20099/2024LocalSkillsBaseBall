@@ -289,9 +289,14 @@ function reservationModal(e) {
   document.getElementById('selectedDate').innerText = '선택하신 날짜 : ' + selectedDate + '일';
   console.log(document.getElementById('selectedDateInput').value);
   $(".modal").modal("show");
-
+  totalPrice = 50000;
+  
+  document.getElementById('totalPriceInput').value = totalPrice;
+  
+  document.getElementById('feeCalculateResult').innerText = '사용료 : ' + totalPrice + '원';
 }
 
+let price = 0;
 
 function feeCalculator(leagueElement, minPlayersElement) {
   const people = minPlayersElement.value;
@@ -321,19 +326,17 @@ function feeCalculator(leagueElement, minPlayersElement) {
       secondGame.innerText="07시";
       thirdGame.style.display="none";
       break;
-
-    case "리그를 선택해 주세요":
-      alert("리그를 선택해 주세요");
-      break;
   }
 
-  let totalPrice = price + (people - 20) * 1000;
   
-  console.log(price)
+  totalPrice = price + (people - 19) * 1000;
   console.log(totalPrice)
 
-  document.getElementById('totalPriceInput').value = totalPrice;
+  totalPrice = totalPrice - 1000;
+  console.log(totalPrice)
 
+  
+  document.getElementById('totalPriceInput').value = totalPrice;
+  
   document.getElementById('feeCalculateResult').innerText = '사용료 : ' + totalPrice + '원';
-  console.log(document.getElementById('totalPriceInput').value);
 }
