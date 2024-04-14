@@ -192,7 +192,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 
 <body>
-    <!-- <?php include("./components/header.php") ?> -->
+    <?php include("./components/header.php") ?>
     <?php include("./components/footer.php") ?>
 
     <script src="./선수제공파일/bootstrap-5.2.0-dist/js/bootstrap.js"></script>

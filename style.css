@@ -571,7 +571,7 @@ th {
     display: flex;
     justify-content: center;
     text-align: center;
-    margin: 250px 0px 250px 0px;
+    margin-bottom: 250px;
 }
 
 tbody>tr>td{
@@ -580,4 +580,9 @@ tbody>tr>td{
 
 #thirdGame{
     display: none;
+}
+
+#reservationList{
+    text-align: center;
+    margin-top: 300px;
 }
