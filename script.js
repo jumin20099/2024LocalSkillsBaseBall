@@ -18,7 +18,9 @@ function updateChartAndTable(visitorsData, leagueName, day, orientation) {
 
   // 표 업데이트
   $("#visitorTable").empty();
-  $("#visitorTable").append(`<thead><tr><th>시간대</th><th>방문자 수</th></tr></thead>`);
+  $("#visitorTable").append(
+    `<thead><tr><th>시간대</th><th>방문자 수</th></tr></thead>`
+  );
   const tbody = $("<tbody></tbody>");
   for (const [time, count] of Object.entries(visitorData)) {
     tbody.append(`<tr><td>${time}</td><td>${count}</td></tr>`);
@@ -47,7 +49,9 @@ function updateChartAndTable(visitorsData, leagueName, day, orientation) {
     $("#chartArea").append(chartContainer);
   } else {
     // 수직 차트 생성
-    const chartContainer = $("<div class='d-flex align-items-end' style='height: 200px;'></div>");
+    const chartContainer = $(
+      "<div class='d-flex align-items-end' style='height: 200px;'></div>"
+    );
     Object.entries(visitorData).forEach(([time, count]) => {
       // 시간당 방문자 수를 기준으로 수직 막대 차트 생성
       const barHeight = (count / 500) * 200;
@@ -90,7 +94,12 @@ async function initBaseballParkChart() {
       const selectedLeague = $("#leagueSelect").val();
       const selectedDay = $("#daySelect").val();
       const orientation = $("#chartOrientation").val();
-      updateChartAndTable(visitorsData, selectedLeague, selectedDay, orientation);
+      updateChartAndTable(
+        visitorsData,
+        selectedLeague,
+        selectedDay,
+        orientation
+      );
     })
     .change();
 }
@@ -135,10 +144,16 @@ async function updateGoodsList() {
   const sortFilter = document.querySelector("#sortFilter").value;
   switch (sortFilter) {
     case "priceDesc":
-      goods.sort((a, b) => Number(b.price.replace(",", "")) - Number(a.price.replace(",", ""))); // 가격 내림차순
+      goods.sort(
+        (a, b) =>
+          Number(b.price.replace(",", "")) - Number(a.price.replace(",", ""))
+      ); // 가격 내림차순
       break;
     case "priceAsc":
-      goods.sort((a, b) => Number(a.price.replace(",", "")) - Number(b.price.replace(",", ""))); // 가격 오름차순
+      goods.sort(
+        (a, b) =>
+          Number(a.price.replace(",", "")) - Number(b.price.replace(",", ""))
+      ); // 가격 오름차순
       break;
     case "sortDesc":
       goods.sort((a, b) => b.sale - a.sale); // 판매량 내림차순
@@ -158,8 +173,12 @@ async function updateGoodsList() {
   for (let i = 0; i < goods.length; i++) {
     // 상위 3개 상품은 BEST로 표시
     if (i < 3) {
-      bestGoodsListElem.innerHTML += `<div id="goods${goods[i].idx}" class="card" style="width: 18rem;">
-        <img src="./선수제공파일/B_Module/${goods[i].img}" class="card-img-top" alt="...">
+      bestGoodsListElem.innerHTML += `<div id="goods${
+        goods[i].idx
+      }" class="card" style="width: 18rem;">
+        <img src="./선수제공파일/B_Module/${
+          goods[i].img
+        }" class="card-img-top" alt="...">
         <div class="card-body">
           <h5 class="card-title">[ BEST ] ${goods[i].title}</h5>
           <p class="card-text">가격 : ${goods[i].price}원</p>
@@ -172,7 +191,9 @@ async function updateGoodsList() {
       // 나머지 상품은 일반적으로 표시
       goodsListElem.innerHTML += `
         <div id="goods${goods[i].idx}" class="card" style="width: 18rem;">
-        <img src="./선수제공파일/B_Module/${goods[i].img}" class="card-img-top" alt="...">
+        <img src="./선수제공파일/B_Module/${
+          goods[i].img
+        }" class="card-img-top" alt="...">
         <div class="card-body">
           <h5 class="card-title">${goods[i].title}</h5>
           <p class="card-text">가격 : ${goods[i].price}원</p>
@@ -229,10 +250,12 @@ $(document).ready(function () {
         minWidth: "50px",
         minHeight: "20px",
       })
-      .draggable({ // 드래그 기능 추가
+      .draggable({
+        // 드래그 기능 추가
         containment: "#edit-area",
       })
-      .on("click", function (e) { // 클릭 이벤트 핸들러
+      .on("click", function (e) {
+        // 클릭 이벤트 핸들러
         e.stopPropagation();
         $(".text-box").removeClass("selected-text-box");
         $(this).addClass("selected-text-box");
@@ -244,7 +267,8 @@ $(document).ready(function () {
 
   // 글상자 회전 기능
   $(document).keydown(function (e) {
-    if (selectedTextBox && e.ctrlKey && e.keyCode === 39) { // Ctrl + 오른쪽 화살표
+    if (selectedTextBox && e.ctrlKey && e.keyCode === 39) {
+      // Ctrl + 오른쪽 화살표
       let currentRotation = $(selectedTextBox).data("rotation") || 0; // 현재 회전 값 가져오기
       let newRotation = currentRotation + 90; // 90도 회전
       $(selectedTextBox)
@@ -283,12 +307,17 @@ function goodsEdit(elem) {
   adjustModalForContent(); // 모달 크기 조정
 }
 
-
 function reservationModal(e) {
   let selectedDate = e.innerText;
-  document.getElementById('selectedDate').innerText = '선택하신 날짜 : ' + selectedDate + '일';
-  console.log(document.getElementById('selectedDateInput').value);
+  document.getElementById("selectedDate").innerText = "선택하신 날짜 : " + selectedDate + "일";
+  console.log(document.getElementById("selectedDateInput").value);
   $(".modal").modal("show");
+  totalPrice = 50000;
+
+  document.getElementById("totalPriceInput").value = totalPrice;
+
+  document.getElementById("feeCalculateResult").innerText =
+    "사용료 : " + totalPrice + "원";
 }
 
 let price = 0;
@@ -296,42 +325,41 @@ let price = 0;
 function feeCalculator(leagueElement, minPlayersElement) {
   const people = minPlayersElement.value;
   const league = leagueElement.value;
-  const firstGame = document.getElementById("firstGame")
-  const secondGame = document.getElementById("secondGame")
-  const thirdGame = document.getElementById("thirdGame")
+  const firstGame = document.getElementById("firstGame");
+  const secondGame = document.getElementById("secondGame");
+  const thirdGame = document.getElementById("thirdGame");
 
   let price = 0;
 
   switch (league) {
     case "나이트리그":
       price = 50000;
-      thirdGame.style.display="none";
+      thirdGame.style.display = "none";
       break;
 
     case "주말리그":
       price = 100000;
-      firstGame.innerText="09시";
-      secondGame.innerText="13시";
-      thirdGame.style.display="block";
+      firstGame.innerText = "09시";
+      secondGame.innerText = "13시";
+      thirdGame.style.display = "block";
       break;
 
     case "새벽리그":
       price = 30000;
-      firstGame.innerText="04시";
-      secondGame.innerText="07시";
-      thirdGame.style.display="none";
+      firstGame.innerText = "04시";
+      secondGame.innerText = "07시";
+      thirdGame.style.display = "none";
       break;
   }
 
-  
   totalPrice = price + (people - 19) * 1000;
-  console.log(totalPrice)
+  console.log(totalPrice);
 
   totalPrice = totalPrice - 1000;
-  console.log(totalPrice)
+  console.log(totalPrice);
 
-  
-  document.getElementById('totalPriceInput').value = totalPrice;
-  
-  document.getElementById('feeCalculateResult').innerText = '사용료 : ' + totalPrice + '원';
+  document.getElementById("totalPriceInput").value = totalPrice;
+
+  document.getElementById("feeCalculateResult").innerText =
+    "사용료 : " + totalPrice + "원";
 }
