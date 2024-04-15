@@ -334,6 +334,8 @@ function feeCalculator(leagueElement, minPlayersElement) {
   switch (league) {
     case "나이트리그":
       price = 50000;
+      firstGame.innerText = "19시";
+      secondGame.innerText = "23시";
       thirdGame.style.display = "none";
       break;
 
@@ -350,6 +352,7 @@ function feeCalculator(leagueElement, minPlayersElement) {
       secondGame.innerText = "07시";
       thirdGame.style.display = "none";
       break;
+
   }
 
   totalPrice = price + (people - 19) * 1000;
