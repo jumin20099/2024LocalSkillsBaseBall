@@ -1,3 +1,36 @@
+<?php
+$resSql = "SELECT *
+FROM reservation
+INNER JOIN user
+ON reservation.user_idx = user.user_idx
+ORDER BY reservation_idx DESC";
+
+$userSql = "SELECT *
+FROM user
+WHERE user_idx = :user_idx";
+
+$stmt = $pdo->prepare($resSql);
+$stmt->execute();
+$reservations = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $action = $_POST["action"] ?? null; // action 값 확인
+
+    // 승인 기능
+    if ($action === "approve") {
+        if (isset($_POST["approve_reservation_idx"])) {
+
+        }
+    }
+
+    // 삭제 기능
+    if ($action === "delete") {
+        if (isset($_POST["delete_reservation_idx"])) {
+
+        }
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -47,11 +80,25 @@
                 <div class="modal-body">
                     <img src="./images/먹다남긴와플.jpg">
                     <p>지방기능경기대회 당일날 늦잠 잔 누군가가 먹던것으로 추정되는 눈물 젖은 와플.<br>온기가 남아있다..</p>
-                    <form class="goodsForm" action="">
-                        <button>관심goods등록</button>
-                        <button>장바구니</button>
-                        <button>바로구매</button>
-                    </form>
+                    
+                    <?php
+                    echo "
+                    <div>
+                        <form class='goodsForm' action=''>
+                            <input type='hidden' name='action' value='interestGoods'>
+                            <button id='interestBtn' type='submit' name='interest_goods_idx'>관심goods등록</button>
+                        </form>
+                        <form class='goodsForm' action=''>
+                            <input type='hidden' name='action' value='basket'>
+                            <button id='basketBtn' type='submit' name='shopping_basket_idx'>장바구니</button>
+                        </form>
+                        <form class='goodsForm' action=''>
+                            <input type='hidden' name='action' value='buyNow'>
+                            <button id='buyNowBtn' type='submit' name='buy_now_idx'>바로구매</button>
+                        </form>
+                    </div>
+                    "
+                    ?>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -72,11 +119,24 @@
                 <div class="modal-body">
                     <img src="./images/애플컴.jpg">
                     <p>누군가 새벽 늦게까지 과제를 위해 사용했다고 전해지는 오래된 짭퉁 iMac.<br>온기가 남아있다..</p>
-                    <form class="goodsForm" action="">
-                        <button>관심goods등록</button>
-                        <button>장바구니</button>
-                        <button>바로구매</button>
-                    </form>
+                    <?php
+                    echo "
+                    <div>
+                        <form class='goodsForm' action=''>
+                            <input type='hidden' name='action' value='interestGoods'>
+                            <button id='interestBtn' type='submit' name='interest_goods_idx'>관심goods등록</button>
+                        </form>
+                        <form class='goodsForm' action=''>
+                            <input type='hidden' name='action' value='basket'>
+                            <button id='basketBtn' type='submit' name='shopping_basket_idx'>장바구니</button>
+                        </form>
+                        <form class='goodsForm' action=''>
+                            <input type='hidden' name='action' value='buyNow'>
+                            <button id='buyNowBtn' type='submit' name='buy_now_idx'>바로구매</button>
+                        </form>
+                    </div>
+                    "
+                    ?>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -98,11 +158,24 @@
                 <div class="modal-body">
                     <img src="./images/누가그린지모를그림.jpg">
                     <p>누군가의 아버지가 화가친구에게 선물 받은 과감한 붓터치가 인상적인 화폭 한점.<br>온기가 남아있다..</p>
-                    <form class="goodsForm" action="">
-                        <button>관심goods등록</button>
-                        <button>장바구니</button>
-                        <button>바로구매</button>
-                    </form>
+                    <?php
+                    echo "
+                    <div>
+                        <form class='goodsForm' action=''>
+                            <input type='hidden' name='action' value='interestGoods'>
+                            <button id='interestBtn' type='submit' name='interest_goods_idx'>관심goods등록</button>
+                        </form>
+                        <form class='goodsForm' action=''>
+                            <input type='hidden' name='action' value='basket'>
+                            <button id='basketBtn' type='submit' name='shopping_basket_idx'>장바구니</button>
+                        </form>
+                        <form class='goodsForm' action=''>
+                            <input type='hidden' name='action' value='buyNow'>
+                            <button id='buyNowBtn' type='submit' name='buy_now_idx'>바로구매</button>
+                        </form>
+                    </div>
+                    "
+                    ?>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -124,11 +197,24 @@
                 <div class="modal-body">
                     <img src="./images/용접킹의용접모.jpg">
                     <p>누군가의 형이 고등학교 시절 사용하던 낡고 더러운 용접모.<br>온기가 남아있다..</p>
-                    <form class="goodsForm" action="">
-                        <button>관심goods등록</button>
-                        <button>장바구니</button>
-                        <button>바로구매</button>
-                    </form>
+                    <?php
+                    echo "
+                    <div>
+                        <form class='goodsForm' action=''>
+                            <input type='hidden' name='action' value='interestGoods'>
+                            <button id='interestBtn' type='submit' name='interest_goods_idx'>관심goods등록</button>
+                        </form>
+                        <form class='goodsForm' action=''>
+                            <input type='hidden' name='action' value='basket'>
+                            <button id='basketBtn' type='submit' name='shopping_basket_idx'>장바구니</button>
+                        </form>
+                        <form class='goodsForm' action=''>
+                            <input type='hidden' name='action' value='buyNow'>
+                            <button id='buyNowBtn' type='submit' name='buy_now_idx'>바로구매</button>
+                        </form>
+                    </div>
+                    "
+                    ?>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
