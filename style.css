@@ -606,12 +606,16 @@ tbody>tr>td{
     border: solid black 2px;
 }
 
-.modal-body{
+/* .modal-body{
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
-}
+} */
+
+/* /* .modal-body div{
+    display: flex;
+} */
 
 .modal-body img{
     width: 350px;
@@ -619,18 +623,20 @@ tbody>tr>td{
     border: solid black 2px;
 }
 
-.modal-body p{
+/* .modal-body p{
     margin-top: 10px;
     font-size: 20px;
     font-weight: 900;
-}
+} */ 
 
 .goodsForm{
     margin-top: 20px;
+    display: flex;
 }
 
 .goodsForm button{
     height: 30px;
     margin-right: 10px;
+    display: flex;
 }
 
