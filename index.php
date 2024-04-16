@@ -1,11 +1,11 @@
 <?php
-include ("./api/DBconnect.php");
+include("./api/DBconnect.php");
 
 session_start();
 
 $request = $_SERVER['REQUEST_URI'];
 $path = explode("?", $request);
-$path[1] = isset ($path[1]) ? $path[1] : null;
+$path[1] = isset($path[1]) ? $path[1] : null;
 $resource = explode("/", $path[0]);
 
 $pages = "";
@@ -51,4 +51,4 @@ switch ($resource[1]) {
         echo "ㄴㄴ";
         return 0;
 }
-include ($pages);
+include($pages);

@@ -26,6 +26,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit();
     }
 }
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (isset($_POST["holyday_idx"])) {
+        $league = $_POST['league']; 
+        $game_date = $_POST['selectedDate']; 
+        $game_time = $_POST['time']; 
+
+        // 데이터베이스에 저장
+        $insertSql = "INSERT INTO holyday (league, game_time, game_date) VALUES (:league, :game_time, :game_date)";
+        $insertStmt = $pdo->prepare($insertSql);
+        $insertStmt->bindParam(':league', $league);
+        $insertStmt->bindParam(':game_time', $game_time);
+        $insertStmt->bindParam(':game_date', $game_date);
+        $insertStmt->execute(); // 저장 실행
+    }
+}
 ?>
 
 <table id="reservationTable">
@@ -43,10 +59,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <?php
     if ($reservations) {
         foreach ($reservations as $reservation) {
-            $league = $reservation['league'];
-            $reservated_date = $reservation['reservated_date'];
-            $game_time = $reservation['game_time'];
-
             $approvedReservationSql = "SELECT *
             FROM reservation
             WHERE league = :league
@@ -79,12 +91,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 echo "<td>";
                 echo $reservation["is_payment"];
                 echo "</td>";
-                if ($reservation["is_payment"] == "결제요청"){
+                if ($reservation["is_payment"] == "결제요청") {
                     echo "<form action='' method='post'>";
                     echo "<td><button type='submit' name='approve_reservation_idx' value='" . $reservation['reservation_idx'] . "'>결제승인</button></td>";
                     echo "</form>";
                 }
-            } if($reservation["is_payment"] == "결제완료") {
+            }
+            if ($reservation["is_payment"] == "결제완료") {
                 echo "<td>결제완료</td>";
                 echo "<td>결제완료</td>";
             }
@@ -107,7 +120,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <body>
     <!-- <?php include("./components/header.php") ?> -->
-    
+
     <article id="gameTable">
         <table id="resTable">
             <tr>
@@ -178,8 +191,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div class="modal-body">
                     <form id="reservationForm" action="" method="POST">
                         <label for="league">리그 선택 : </label>
-                        <select id="league" name="league"
-                            onchange="feeCalculator(this, document.getElementById('minPlayers'))">
+                        <select id="league" name="league" onchange="feeCalculator(this, document.getElementById('minPlayers'))">
                             <option value="나이트리그">나이트리그</option>
                             <option value="주말리그">주말리그</option>
                             <option value="새벽리그">새벽리그</option>
@@ -204,8 +216,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
                     <?php
-                    if (isset ($_SESSION["user_idx"])) {
-                        echo "<button type='submit' class='btn btn-primary'>예약하기</button>";
+                    if (isset($_SESSION["user_idx"])) {
+                        echo "<button type='submit' name='holyday_idx' class='btn btn-primary'>휴일지정</button>";
                     } else {
                         echo "<button type='submit' disabled class='btn btn-primary'>로그인 후 예약 가능합니다</button>";
                     }

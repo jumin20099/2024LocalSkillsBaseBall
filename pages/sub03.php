@@ -1,4 +1,9 @@
 <?php
+$holydaySql = "SELECT * FROM holyday";
+$stmtHolyday = $pdo->prepare($holydaySql);
+$stmtHolyday->execute();
+$holydays = $stmtHolyday->fetchAll(PDO::FETCH_ASSOC);
+
 if ($_SESSION["username"] == "admin"){
     echo "
     <script>
@@ -16,22 +21,41 @@ if ($_SESSION["username"] == "manager"){
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $league = $_POST['league'];
     $game_time = $_POST['time'];
-    $min_user = $_POST['minPlayers'];
-    $price = $_POST['totalPrice'];
-    $user_idx = $_SESSION["user_idx"];
-    $now = date("Y-m-d");
+    $selected_date = $_POST['selectedDate'];
 
-    // reservation 테이블에 데이터 삽입
-    $sql = "INSERT INTO reservation (league, game_time, min_user, price, user_idx) VALUES (?, ?, ?, ?, ?)";
-    $stmt = $pdo->prepare($sql);
-    $stmt->execute([$league, $game_time, $min_user, $price, $user_idx]);
+    // 휴일인지 확인 후 처리
+    $is_holyday = false;
+    foreach ($holydays as $holyday) {
+        if ($holyday['game_date'] == $selected_date && $holyday['league'] == $league && $holyday['game_time'] == $game_time) {
+            $is_holyday = true;
+            break; // 휴일이면 더 이상 확인하지 않고 반복문 종료
+        }
+    }
+
+    // 휴일이면 예약 처리 중단
+    if ($is_holyday == false) {
+        echo "<script>alert('해당 날짜와 시간, 리그는 휴일로 지정되어 예약할 수 없습니다.');
+        location.href='reservation'</script>";
+        exit(); // 예약 처리 중단
+    } else{
+        // 휴일이 아닌 경우에만 예약 처리를 진행합니다.
+        $min_user = $_POST['minPlayers'];
+        $price = $_POST['totalPrice'];
+        $user_idx = $_SESSION["user_idx"];
+        $now = date("Y-m-d");
     
-    // 예약된 정보 업데이트
-    $update_sql = "UPDATE reservation SET reservated_date = :reservated_date WHERE user_idx = :user_idx";
-    $update_stmt = $pdo->prepare($update_sql);
-    $update_stmt->bindParam(":reservated_date", $now);
-    $update_stmt->bindParam(":user_idx", $user_idx);
-    $update_stmt->execute();
+        // reservation 테이블에 데이터 삽입
+        $sql = "INSERT INTO reservation (league, game_time, min_user, price, user_idx) VALUES (?, ?, ?, ?, ?)";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([$league, $game_time, $min_user, $price, $user_idx]);
+    
+        // 예약된 정보 업데이트
+        $update_sql = "UPDATE reservation SET reservated_date = :reservated_date WHERE user_idx = :user_idx";
+        $update_stmt = $pdo->prepare($update_sql);
+        $update_stmt->bindParam(":reservated_date", $now);
+        $update_stmt->bindParam(":user_idx", $user_idx);
+        $update_stmt->execute();
+    }
 
 }
 ?>

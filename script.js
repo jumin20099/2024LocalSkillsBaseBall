@@ -173,11 +173,9 @@ async function updateGoodsList() {
   for (let i = 0; i < goods.length; i++) {
     // 상위 3개 상품은 BEST로 표시
     if (i < 3) {
-      bestGoodsListElem.innerHTML += `<div id="goods${
-        goods[i].idx
-      }" class="card" style="width: 18rem;">
-        <img src="./선수제공파일/B_Module/${
-          goods[i].img
+      bestGoodsListElem.innerHTML += `<div id="goods${goods[i].idx
+        }" class="card" style="width: 18rem;">
+        <img src="./선수제공파일/B_Module/${goods[i].img
         }" class="card-img-top" alt="...">
         <div class="card-body">
           <h5 class="card-title">[ BEST ] ${goods[i].title}</h5>
@@ -191,8 +189,7 @@ async function updateGoodsList() {
       // 나머지 상품은 일반적으로 표시
       goodsListElem.innerHTML += `
         <div id="goods${goods[i].idx}" class="card" style="width: 18rem;">
-        <img src="./선수제공파일/B_Module/${
-          goods[i].img
+        <img src="./선수제공파일/B_Module/${goods[i].img
         }" class="card-img-top" alt="...">
         <div class="card-body">
           <h5 class="card-title">${goods[i].title}</h5>
@@ -309,8 +306,33 @@ function goodsEdit(elem) {
 
 function reservationModal(e) {
   let selectedDate = e.innerText;
+  let league = document.getElementById("league").value;
+  let time = document.getElementById("reservationTime").value;
+
+  document.getElementById("selectedDateInput").value = selectedDate;
+
+
+  let data = {
+    league: league,
+    time: time,
+    selectedDate: selectedDate
+  };
+  console.log(data)
+  $.ajax({
+    type: "POST",
+    url: "sub03_admin.php", // 휴일 지정을 처리하는 PHP 파일 경로
+    data: data,
+    success: function (response) {
+      // 성공 시의 처리 (예를 들어, 성공 메시지 출력 등)
+      console.log(response);
+    },
+    error: function (xhr, status, error) {
+      // 오류 발생 시의 처리
+      console.error(error);
+    }
+  });
+
   document.getElementById("selectedDate").innerText = "선택하신 날짜 : " + selectedDate + "일";
-  console.log(document.getElementById("selectedDateInput").value);
   $(".modal").modal("show");
   totalPrice = 50000;
 
@@ -318,7 +340,11 @@ function reservationModal(e) {
 
   document.getElementById("feeCalculateResult").innerText =
     "사용료 : " + totalPrice + "원";
+
+
 }
+
+
 
 let price = 0;
 
