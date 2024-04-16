@@ -23,20 +23,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $game_time = $_POST['time'];
     $selected_date = $_POST['selectedDate'];
 
+    settype($game_time, "int");
+    settype($selected_date, "int");
+    
+    // echo('리그: ' . $league . gettype($league));
+    // echo('게임 시간: ' . $game_time . gettype($game_time));
+    // echo('게임 날짜: ' . $selected_date . gettype($selected_date));
+
     // 휴일인지 확인 후 처리
     $is_holyday = false;
     foreach ($holydays as $holyday) {
-        if ($holyday['game_date'] == $selected_date && $holyday['league'] == $league && $holyday['game_time'] == $game_time) {
+        if ($holyday['game_date'] == $selected_date and $holyday['league'] == $league and $holyday['game_time'] == $game_time) {
             $is_holyday = true;
-            break; // 휴일이면 더 이상 확인하지 않고 반복문 종료
+            break;
         }
     }
 
     // 휴일이면 예약 처리 중단
-    if ($is_holyday == false) {
-        echo "<script>alert('해당 날짜와 시간, 리그는 휴일로 지정되어 예약할 수 없습니다.');
-        location.href='reservation'</script>";
-        exit(); // 예약 처리 중단
+    if ($is_holyday == true) {
+        echo "<script>alert('해당 날짜와 시간, 리그는 휴일로 지정되어 예약할 수 없습니다.');</script>";
+        // exit();
     } else{
         // 휴일이 아닌 경우에만 예약 처리를 진행합니다.
         $min_user = $_POST['minPlayers'];
@@ -157,9 +163,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         </div>
                         <label for="time">시간 : </label>
                         <select id="reservationTime" name="time">
-                            <option id="firstGame" name="time">19시</option>
-                            <option id="secondGame" name="time">23시</option>
-                            <option id="thirdGame" name="time">15시</option>
+                            <option id="firstGame" name="time">19</option>
+                            <option id="secondGame" name="time">23</option>
+                            <option id="thirdGame" name="time">15</option>
                         </select><br>
                         <label for="players">최소인원 : </label>
                         <input onchange="feeCalculator(document.getElementById('league'), this)" type="number"
@@ -174,7 +180,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
                     <?php
                     if (isset ($_SESSION["user_idx"])) {
-                        echo "<button type='submit' class='btn btn-primary'>예약하기</button>";
+                        echo "<button type='submit' id='resBtn' class='btn btn-primary'>예약하기</button>";
                     } else {
                         echo "<button type='submit' disabled class='btn btn-primary'>로그인 후 예약 가능합니다</button>";
                     }
