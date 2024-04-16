@@ -22,46 +22,47 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
     }
 }
 ?>
-
-<table id="reservationTable">
-    <tr>
-        <th>리그</th>
-        <th>날짜</th>
-        <th>시간</th>
-        <th>최소인원</th>
-        <th>사용료</th>
-        <th>승인상태</th>
-        <th>결제상태</th>
-        <th>결제버튼</th>
-    </tr>
-    <?php
-    if ($reservations) {
-        foreach ($reservations as $reservation) {
-            $user = isset($reservation['user']) ? $reservation['user'] : null;
-            
-            // 예약 목록 출력
-            echo "<tr>";
-            echo "<td>" . $reservation["league"] . "</td>";
-            echo "<td>" . $reservation["reservated_date"] . "</td>";
-            echo "<td>" . $reservation["game_time"] . "</td>";
-            echo "<td>" . $reservation["min_user"] . "명" . "</td>";
-            echo "<td>" . $reservation["price"] . "원" . "</td>";
-            echo "<td>" . $reservation["reservation_status"] . "</td>";
-            echo "<td>" . $reservation["is_payment"] . "</td>";
-            if($reservation["reservation_status"] == "승인거부" || $reservation["is_payment"] == "결제요청"){
-                echo "<td></td>";
+<div id="resTableContainer">
+    <table id="reservationTable">
+        <tr>
+            <th>리그</th>
+            <th>날짜</th>
+            <th>시간</th>
+            <th>최소인원</th>
+            <th>사용료</th>
+            <th>승인상태</th>
+            <th>결제상태</th>
+            <th>결제버튼</th>
+        </tr>
+        <?php
+        if ($reservations) {
+            foreach ($reservations as $reservation) {
+                $user = isset($reservation['user']) ? $reservation['user'] : null;
+                
+                // 예약 목록 출력
+                echo "<tr>";
+                echo "<td>" . $reservation["league"] . "</td>";
+                echo "<td>" . $reservation["reservated_date"] . "</td>";
+                echo "<td>" . $reservation["game_time"] . "</td>";
+                echo "<td>" . $reservation["min_user"] . "명" . "</td>";
+                echo "<td>" . $reservation["price"] . "원" . "</td>";
+                echo "<td>" . $reservation["reservation_status"] . "</td>";
+                echo "<td>" . $reservation["is_payment"] . "</td>";
+                if($reservation["reservation_status"] == "승인거부" || $reservation["is_payment"] == "결제요청"){
+                    echo "<td></td>";
+                }
+                if($reservation["is_payment"] == "결제전" && $reservation["reservation_status"] != "승인거부"){
+                    echo "<form action='' method='post'>";
+                    echo "<input type='hidden' name='payment_reservation_idx' value='" . $reservation['reservation_idx'] . "'>";
+                    echo "<td><button type='submit'>결제</button></td>";
+                    echo "</form>";
+                }
+                echo "</tr>";
             }
-            if($reservation["is_payment"] == "결제전" && $reservation["reservation_status"] != "승인거부"){
-                echo "<form action='' method='post'>";
-                echo "<input type='hidden' name='payment_reservation_idx' value='" . $reservation['reservation_idx'] . "'>";
-                echo "<td><button type='submit'>결제</button></td>";
-                echo "</form>";
-            }
-            echo "</tr>";
         }
-    }
-    ?>
-</table>
+        ?>
+    </table>
+</div>
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -76,7 +77,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
 </head>
 
 <body>
-    <!-- <?php include("./components/header.php") ?> -->
+    <?php include("./components/header.php") ?>
 
     <?php include("./components/footer.php") ?>
 

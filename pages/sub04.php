@@ -45,7 +45,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 
 <body>
-    <!-- <?php include("./components/header.php") ?> -->
+    <?php include("./components/header.php") ?>
 
     <h1 id="goodsH1">Goods</h1>
     <div id="goodsContainer">

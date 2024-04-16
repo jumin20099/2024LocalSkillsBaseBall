@@ -1,6 +1,7 @@
 body {
     margin: 0;
     padding: 0;
+    padding-top: 150px;
 }
 
 a {
@@ -22,6 +23,31 @@ header {
     width: 100%;
     z-index: 1000;
     background-color: white;
+}
+
+#container{
+    width: 1320px;
+    margin: 0 auto;
+}
+
+#infoContainer{
+    width: 1320px;
+    margin: 0 auto;
+}
+
+#statisticsContainer{
+    width: 1500px !important;
+    margin: 0 auto;
+}
+
+#gameTableContainer{
+    width: 1320px;
+    margin: 0 auto;
+}
+
+#resTableContainer{
+    width: 1320px;
+    margin: 0 auto;
 }
 
 #leftArticle {
@@ -208,7 +234,6 @@ th {
     width: 900px;
     height: 500px;
     font-size: 25px;
-    margin-top: 200px;
 }
 
 #modal {
@@ -241,7 +266,6 @@ th {
     background-color: white;
     width: 40%;
     margin: 0 auto;
-    margin-top: 120px;
     border-radius: 20px;
 }
 
@@ -344,6 +368,7 @@ th {
 }
 
 #galleryContainer{
+    width: 1320px;
     display: flex;
 }
 
@@ -447,15 +472,8 @@ th {
     height: 400px;
 }
 
-#infoContainer {
-    margin-top: 100px;
-}
-
-#controls {
-    padding-top: 150px;
-}
-
 .bar-container {
+    width: 1320px;
     display: flex;
     align-items: flex-end;
     height: 200px;
@@ -537,7 +555,9 @@ th {
 
 
 #signupContainer {
-    margin: 200px 0px 200px 0px;
+    width: 1320px;
+    margin: 0 auto;
+    margin-bottom: 200px;
     display: flex;
     justify-content: center;
 }
@@ -592,8 +612,10 @@ tbody>tr>td{
 }
 
 #goodsContainer{
+    width: 1320px;
     display: flex;
     justify-content: space-around;
+    margin: 0 auto;
 }
 
 .goods{
@@ -606,16 +628,16 @@ tbody>tr>td{
     border: solid black 2px;
 }
 
-/* .modal-body{
+.modal-body{
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
-} */
+}
 
-/* /* .modal-body div{
+.modal-body div{
     display: flex;
-} */
+}
 
 .modal-body img{
     width: 350px;
@@ -623,11 +645,11 @@ tbody>tr>td{
     border: solid black 2px;
 }
 
-/* .modal-body p{
+.modal-body p{
     margin-top: 10px;
     font-size: 20px;
     font-weight: 900;
-} */ 
+}
 
 .goodsForm{
     margin-top: 20px;

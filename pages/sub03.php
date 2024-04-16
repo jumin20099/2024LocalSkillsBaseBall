@@ -82,7 +82,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body>
     <?php include ("./components/header.php") ?>
 
-    <article id="gameTable">
+    <article id="gameTableContainer">
         <table id="resTable">
             <tr>
                 <th>일</th>
