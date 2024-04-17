@@ -113,6 +113,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
             // 예약 목록 출력
+            echo "<caption>예약 목록</caption>";
             echo "<tr>";
             echo "<td><form id='deleteForm' action='' method='post'><input type='hidden' name='action' value='deleteAll'><input type='checkbox' class='delete_checkbox' name='delete_checkboxes[]' value='" . $reservation['reservation_idx'] . "'></form></td>";
             echo "<td>" . $user["username"] . "</td>";
