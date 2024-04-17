@@ -23,6 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
 }
 ?>
 <div id="resTableContainer">
+    <h1>예약 목록</h1>
     <table id="reservationTable">
         <tr>
             <th>리그</th>
@@ -38,8 +39,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
         if ($reservations) {
             foreach ($reservations as $reservation) {
                 $user = isset($reservation['user']) ? $reservation['user'] : null;
-                
-                // 예약 목록 출력
                 echo "<tr>";
                 echo "<td>" . $reservation["league"] . "</td>";
                 echo "<td>" . $reservation["reservated_date"] . "</td>";
@@ -62,6 +61,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
         }
         ?>
     </table>
+
+    <h1>관심goods영역</h1>
+    <h1>장바구니영역</h1>
+    <h1>구매리스트</h1>
 </div>
 <!DOCTYPE html>
 <html lang="ko">
