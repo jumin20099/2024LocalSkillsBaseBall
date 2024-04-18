@@ -19,6 +19,16 @@ $interestStmt->bindParam(':user_idx', $userIdx); // 변수명 수정: $user_idx�
 $interestStmt->execute();
 $interestGoods = $interestStmt->fetchAll(PDO::FETCH_ASSOC);
 
+// 장바구니에 담긴 상품을 가져오는 SQL 쿼리
+$basketSql = "SELECT goods.*, basket.basket_idx
+                  FROM basket
+                  INNER JOIN goods ON basket.goods_idx = goods.goods_idx
+                  WHERE basket.user_idx = :user_idx";
+$basketStmt = $pdo->prepare($basketSql);
+$basketStmt->bindParam(':user_idx', $userIdx);
+$basketStmt->execute();
+$basketItems = $basketStmt->fetchAll(PDO::FETCH_ASSOC);
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST["payment_reservation_idx"])) {
         $reservation_id = $_POST["payment_reservation_idx"];
@@ -73,29 +83,58 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <h1>관심goods영역</h1>
     <div class="row">
+        <?php
+        if ($interestGoods) {
+            foreach ($interestGoods as $interestGood) {
+        ?>
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <img src="<?php echo $interestGood['goods_image']; ?>" class="card-img-top" alt="<?php echo $interestGood['goods_name']; ?>">
+                        <div class="card-body">
+                            <h5 class="card-title"><?php echo $interestGood['goods_name']; ?></h5>
+                            <p class="card-text"><?php echo $interestGood['description']; ?></p>
+                            <p class="card-text">가격: <?php echo $interestGood['goods_price']; ?>원</p>
+                            <button>결제</button>
+                        </div>
+                    </div>
+                </div>
+        <?php
+            }
+        } else {
+            echo "관심 상품이 없습니다.";
+        }
+        ?>
+    </div>
+    <h1>장바구니영역</h1>
+    <div class="row">
     <?php
-    if ($interestGoods) {
-        foreach ($interestGoods as $interestGood) {
+
+    if ($basketItems) {
+        foreach ($basketItems as $basketItem) {
     ?>
             <div class="col-md-4 mb-4">
                 <div class="card">
-                    <img src="<?php echo $interestGood['goods_image']; ?>" class="card-img-top" alt="<?php echo $interestGood['goods_name']; ?>">
+                    <img src="<?php echo $basketItem['goods_image']; ?>" class="card-img-top" alt="<?php echo $basketItem['goods_name']; ?>">
                     <div class="card-body">
-                        <h5 class="card-title"><?php echo $interestGood['goods_name']; ?></h5>
-                        <p class="card-text"><?php echo $interestGood['description']; ?></p>
-                        <p class="card-text">가격: <?php echo $interestGood['goods_price']; ?>원</p>
-                        <button>결제</button>
+                        <h5 class="card-title"><?php echo $basketItem['goods_name']; ?></h5>
+                        <p class="card-text"><?php echo $basketItem['description']; ?></p>
+                        <p class="card-text">가격: <?php echo $basketItem['goods_price']; ?>원</p>
+                        <form action="" method="post">
+                            <input type="hidden" name="action" value="removeFromBasket">
+                            <input type="hidden" name="basket_idx" value="<?php echo $basketItem['basket_idx']; ?>">
+                            <button>결제</button>
+                        </form>
                     </div>
                 </div>
             </div>
     <?php
         }
     } else {
-        echo "관심 상품이 없습니다.";
+        echo "장바구니에 상품이 없습니다.";
     }
     ?>
 </div>
-    <h1>장바구니영역</h1>
+
     <h1>구매리스트</h1>
 </div>
 <!DOCTYPE html>

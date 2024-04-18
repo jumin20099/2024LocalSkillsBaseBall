@@ -37,7 +37,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { // 굿즈별로 액션 분기 처리
                 $insertStmt->execute();
                 break;
             case 'basket':
-                echo ("장바구니");
+                // 사용자가 장바구니에 추가한 상품의 ID를 가져옴
+                $goodsIdx = $_POST["goods_idx"];
+
+                // 장바구니에 해당 상품을 추가하는 SQL 쿼리 실행
+                $cartInsertSql = "INSERT INTO basket (user_idx, goods_idx) VALUES (:user_idx, :goods_idx)";
+                $cartInsertStmt = $pdo->prepare($cartInsertSql);
+                $cartInsertStmt->bindParam(":user_idx", $_SESSION['user_idx']);
+                $cartInsertStmt->bindParam(":goods_idx", $goodsIdx);
+                $cartInsertStmt->execute();
+
+                // 페이지 새로고침 방지를 위해 리다이렉트
+                // header("Location: /goods");
                 break;
             case 'buyNow':
                 echo ("바로구매");
