@@ -51,7 +51,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { // 굿즈별로 액션 분기 처리
                 // header("Location: /goods");
                 break;
             case 'buyNow':
-                echo ("바로구매");
+                @header("Location: /goodsPayment");
                 break;
             default:
                 echo ("이게뭐노");
