@@ -656,7 +656,7 @@ tbody>tr>td{
 }
 
 .goodsForm{
-    margin-top: 20px;
+    margin-top: 10px;
     display: flex;
 }
 
@@ -666,3 +666,6 @@ tbody>tr>td{
     display: flex;
 }
 
+#goodsDiv{
+    display: flex;
+}
