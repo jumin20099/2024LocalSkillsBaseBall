@@ -47,6 +47,10 @@ switch ($resource[1]) {
         $pages = './pages/sub03_manager.php';
         break;
 
+    case 'goodsPayment':
+        $pages = './pages/goodsPayment.php';
+        break;
+
     default:
         echo "ㄴㄴ";
         return 0;
