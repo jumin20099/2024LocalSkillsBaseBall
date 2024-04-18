@@ -392,3 +392,13 @@ function feeCalculator(leagueElement, minPlayersElement) {
   document.getElementById("feeCalculateResult").innerText =
     "사용료 : " + totalPrice + "원";
 }
+
+
+function showGoodsModal(goodsId) {
+  $('#goodsModal' + goodsId).modal('show');
+}
+
+function goodsIdxValueCheck(button) {
+  let goods_idx = button.parentNode.querySelector('[name="goods_idx"]').value;
+  console.log(goods_idx);
+}
