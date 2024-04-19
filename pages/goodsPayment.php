@@ -4,19 +4,30 @@ $goodsStatement = $pdo->prepare($goodsQuery);
 $goodsStatement->execute();
 $goods = $goodsStatement->fetchAll(PDO::FETCH_ASSOC);
 
+$paymentQuery = "SELECT goodspayment.*, goods.goods_name, goods.goods_price, goods.goods_image 
+                 FROM goodspayment 
+                 INNER JOIN goods ON goodspayment.goods_idx = goods.goods_idx";
+$paymentStatement = $pdo->prepare($paymentQuery);
+$paymentStatement->execute();
+$payments = $paymentStatement->fetchAll(PDO::FETCH_ASSOC);
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST["goods_idx"])) {
         // 사용자가 구매한 상품의 ID 가져오기
         $goods_idx = $_POST["goods_idx"];
 
-        // 해당 상품을 구매한 것으로 업데이트
-        $updateSql = "UPDATE goods SET is_payment = 1 WHERE goods_idx = :goods_idx";
-        $updateStmt = $pdo->prepare($updateSql);
-        $updateStmt->bindParam(':goods_idx', $goods_idx);
-        $updateStmt->execute();
+        // 현재 사용자의 ID 가져오기 (세션에서)
+        $user_idx = $_SESSION["user_idx"];
+
+        // 해당 상품을 구매한 것으로 `goodspayment` 테이블에 삽입
+        $insertSql = "INSERT INTO goodspayment (user_idx, goods_idx, is_payment) VALUES (:user_idx, :goods_idx, 1)";
+        $insertStmt = $pdo->prepare($insertSql);
+        $insertStmt->bindParam(':user_idx', $user_idx);
+        $insertStmt->bindParam(':goods_idx', $goods_idx);
+        $insertStmt->execute();
 
         // 페이지 새로고침 방지를 위해 마이페이지로 리다이렉트
-        header("Location: /mypage.php");
+        header("Location: /mypage");
         exit();
     }
 }
@@ -35,13 +46,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 
 <body>
-    <?php include("./components/header.php") ?>
+    <?php include ("./components/header.php") ?>
     <div class="row">
         <?php
         if ($goods !== null) {
-            foreach ($goods as $item) : ?>
+            foreach ($goods as $item): ?>
                 <div class="col-md-4">
-                    <img src="<?php echo $item['goods_image']; ?>" class="card-img-top" alt="<?php echo $item['goods_name']; ?>">
+                    <img style="width: 300px" src="<?php echo $item['goods_image']; ?>" class="card-img-top"
+                        alt="<?php echo $item['goods_name']; ?>">
                 </div>
                 <div class="col-md-8">
                     <h2><?php echo $item['goods_name']; ?></h2>
@@ -51,13 +63,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <button type="submit" class="btn btn-primary">구매하기</button>
                     </form>
                 </div>
-        <?php endforeach;
+            <?php endforeach;
         } else {
             echo ("상품 정보를 불러올 수 없습니다.");
         }
         ?>
     </div>
-    <?php include("./components/footer.php") ?>
+    <?php include ("./components/footer.php") ?>
     <script src="./선수제공파일/bootstrap-5.2.0-dist/js/bootstrap.js"></script>
     <script src="./script.js"></script>
 </body>
