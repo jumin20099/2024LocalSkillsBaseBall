@@ -20,6 +20,14 @@ $goods = $goodsStmt->fetchAll(PDO::FETCH_ASSOC);
 foreach ($goods as $good):
 endforeach;
 
+if (isset($_SESSION["username"])){
+    if ($_SESSION["username"] == "manager")
+    echo "
+    <script>
+    location.href='sub04_manager'
+    </script>";
+}
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") { // 굿즈별로 액션 분기 처리 나눠야함
     if (isset($_POST["action"])) {
         // 액션에 따라 분기 처리

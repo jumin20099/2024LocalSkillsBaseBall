@@ -119,7 +119,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 
 <body>
-    <!-- <?php include("./components/header.php") ?> -->
+    <?php include("./components/header.php") ?>
 
     <article id="gameTable">
         <table id="resTable">

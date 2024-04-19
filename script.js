@@ -402,3 +402,17 @@ function goodsIdxValueCheck(button) {
   let goods_idx = button.parentNode.querySelector('[name="goods_idx"]').value;
   console.log(goods_idx);
 }
+
+$(document).ready(function(){
+  // 회원가입 버튼 클릭 시 처리
+  $('#signupButton').click(function(){
+      // localhost/signup으로 이동
+      window.location.href = 'http://localhost/signup';
+  });
+  
+  // 페이지 로드 후 URL이 localhost/signup인 경우 모달 표시
+  if(window.location.href.indexOf("localhost/signup") > -1) {
+      // 모달 표시 코드
+      $('#signupModal').modal('show');
+  }
+});

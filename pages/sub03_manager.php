@@ -33,6 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // 삭제 기능
     if ($action === "delete") {
         if (isset($_POST["delete_reservation_idx"])) {
+            echo("삭제");
             // 삭제할 예약의 reservation_idx 가져오기
             $reservationIdx = $_POST["delete_reservation_idx"];
 
@@ -61,8 +62,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 ?>
 
-<table id="reservationTable">
-    <h1 id="reservationList">예약 목록</h1>
+<table id="reservationTable" style="padding: 100px;">
     <tr>
         <th>체크박스</th>
         <th>예약자ID</th>
@@ -113,7 +113,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
             // 예약 목록 출력
-            echo "<caption>예약 목록</caption>";
             echo "<tr>";
             echo "<td><form id='deleteForm' action='' method='post'><input type='hidden' name='action' value='deleteAll'><input type='checkbox' class='delete_checkbox' name='delete_checkboxes[]' value='" . $reservation['reservation_idx'] . "'></form></td>";
             echo "<td>" . $user["username"] . "</td>";
@@ -140,19 +139,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if ($reservation["reservation_status"] == "승인완료") {
                 echo "<td>승인 완료</td>";
                 echo "<td>승인 완료</td>";
-                echo "<td>승인 완료</td>";
             }
             if ($reservation["reservation_status"] == "승인거부") {
                 echo "<td>승인 불가</td>";
                 echo "<td>승인 불가</td>";
             }
             if ($reservation["is_reservated"] == "승인 불가") {
-                // echo '<td>';
-                // echo $reservation["is_reservated"];
-                // echo '</td>';
-                // echo '<td>';
-                // echo $reservation["is_reservated"];
-                // echo '</td>';
                 echo "<form action='' method='post'>";
                 echo "<input type='hidden' name='action' value='delete'>";
                 echo "<td><button id='deleteBtn' type='submit' name='delete_reservation_idx' value='" . $reservation['reservation_idx'] . "'>삭제</button></td>";
