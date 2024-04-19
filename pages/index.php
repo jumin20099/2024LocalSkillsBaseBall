@@ -12,6 +12,8 @@
 
   <?php include ("./components/header.php") ?>
 
+
+
   <section id="container">
     <div class="slidebox">
       <input type="radio" name="slide" id="slide01" checked />
@@ -42,21 +44,24 @@
       </ul>
     </div>
 
+    <article id="infoTitle">
+      <p style="color: #7b9acc;">Skills baseball park</p>
+    </article>
+
     <section id="infomation">
       <article id="info1">
         <img src="./선수제공파일/images/16.jpg" alt="">
-        <p>Skills baseball park는 시민들의 복리증진을 위하여 설치되었으며,<br>시민들의 건강 및 복지향상과 시민들에게 편리한 시설물 이용을 위한 야구장입니다.</p>
+        <p style="color: #7b9acc;">Skills baseball park는 시민들의 복리증진을 위하여 설치되었으며,<br>시민들의 건강 및 복지향상과 시민들에게 편리한 시설물 이용을 위한
+          야구장입니다.</p>
       </article>
 
       <article id="info2">
         <img src="./선수제공파일/images/20.jpg" alt="">
-        <p>야구를 사랑하며 즐기는 생활체육인들이 모이는 곳<br>다양한 즐거움과 감동을 선사하는 곳</p>
+        <p style="color: #7b9acc;">야구를 사랑하며 즐기는 생활체육인들이 모이는 곳<br>다양한 즐거움과 감동을 선사하는 곳</p>
       </article>
-
     </section>
 
     <article id="infoTitle">
-      <p>Skills baseball park</p>
       <a href="information">Information</a>
     </article>
 
@@ -68,22 +73,26 @@
         <article id="gamePoint">
           <div id="todayGame1">
             <img src="./선수제공파일/images/01.jpg" alt="">
-            <p>5</p>
+            <p style="color: #7b9acc;">5</p>
           </div>
           <div id="todayGame2">
-            <p>:</p>
+            <p style="color: #7b9acc;">:</p>
           </div>
           <div id="todayGame3">
             <img src="./선수제공파일/images/01.jpg" alt="">
-            <p>4</p>
+            <p style="color: #7b9acc;">4</p>
           </div>
         </article>
       </article>
 
       <hr>
 
+
+      <article id="infoTitle">
+        <p style="color: #7b9acc;">game Schedule</p>
+      </article>
       <article id="gameTable">
-        <table id="scheduleTable">
+        <table style="color: #7b9acc;" id="scheduleTable">
           <tr>
             <th>일</th>
             <th>월</th>
@@ -159,6 +168,9 @@
     <hr>
 
     <section id="ranking">
+      <article id="infoTitle">
+        <p style="color: #7b9acc;">Ranking</p>
+      </article>
       <div id="ranking_menu">
         <a href="#night_league">나이트리그</a>
         <div id="night_league">
@@ -328,83 +340,83 @@
 
     <hr>
 
-    <div id="galleryContainer">
-      <h1>gallery</h1>
-    </div>
+    <article id="infoTitle">
+      <p style="color: #7b9acc;">Gallery</p>
+    </article>
     <div id="gallery">
       <div id="gallery1">
         <a href="#gallery1">이전</a>
         <div class="imgWhite"></div>
         <div class="img1">
-          <p>1번 이미지<br><button>more</button></p>
+          <p style="color: #7b9acc;">1번 이미지<br><button>more</button></p>
         </div>
         <div class="img2">
-          <p>2번 이미지<br><button>more</button></p>
+          <p style="color: #7b9acc;">2번 이미지<br><button>more</button></p>
         </div>
         <a href="#gallery2">다음</a>
       </div>
       <div id="gallery2">
         <a href="#gallery1">이전</a>
         <div class="img1">
-          <p>1번 이미지<br><button>more</button></p>
+          <p style="color: #7b9acc;">1번 이미지<br><button>more</button></p>
         </div>
         <div class="img2">
-          <p>2번 이미지<br><button>more</button></p>
+          <p style="color: #7b9acc;">2번 이미지<br><button>more</button></p>
         </div>
         <div class="img3">
-          <p>3번 이미지<br><button>more</button></p>
+          <p style="color: #7b9acc;">3번 이미지<br><button>more</button></p>
         </div>
         <a href="#gallery3">다음</a>
       </div>
       <div id="gallery3">
         <a href="#gallery2">이전</a>
         <div class="img2">
-          <p>2번 이미지<br><button>more</button></p>
+          <p style="color: #7b9acc;">2번 이미지<br><button>more</button></p>
         </div>
         <div class="img3">
-          <p>3번 이미지<br><button>more</button></p>
+          <p style="color: #7b9acc;">3번 이미지<br><button>more</button></p>
         </div>
         <div class="img4">
-          <p>4번 이미지<br><button>more</button></p>
+          <p style="color: #7b9acc;">4번 이미지<br><button>more</button></p>
         </div>
         <a href="#gallery4">다음</a>
       </div>
       <div id="gallery4">
         <a href="#gallery3">이전</a>
         <div class="img3">
-          <p>3번 이미지<br><button>more</button></p>
+          <p style="color: #7b9acc;">3번 이미지<br><button>more</button></p>
         </div>
         <div class="img4">
-          <p>4번 이미지<br><button>more</button></p>
+          <p style="color: #7b9acc;">4번 이미지<br><button>more</button></p>
         </div>
         <div class="img5">
-          <p>5번 이미지<br><button>more</button></p>
+          <p style="color: #7b9acc;">5번 이미지<br><button>more</button></p>
         </div>
         <a href="#gallery5">다음</a>
       </div>
       <div id="gallery5">
         <a href="#gallery4">이전</a>
         <div class="img4">
-          <p>4번 이미지<br><button>more</button></p>
+          <p style="color: #7b9acc;">4번 이미지<br><button>more</button></p>
         </div>
         <div class="img5">
-          <p>5번 이미지<br><button>more</button></p>
+          <p style="color: #7b9acc;">5번 이미지<br><button>more</button></p>
         </div>
         <div class="img6">
-          <p>6번 이미지<br><button>more</button></p>
+          <p style="color: #7b9acc;">6번 이미지<br><button>more</button></p>
         </div>
         <a href="#gallery6">다음</a>
       </div>
       <div id="gallery6">
         <a href="#gallery5">이전</a>
         <div class="img5">
-          <p>5번 이미지<br><button>more</button></p>
+          <p style="color: #7b9acc;">5번 이미지<br><button>more</button></p>
         </div>
         <div class="img6">
-          <p>6번 이미지<br><button>more</button></p>
+          <p style="color: #7b9acc;">6번 이미지<br><button>more</button></p>
         </div>
         <div class="img1">
-          <p>1번 이미지<br><button>more</button></p>
+          <p style="color: #7b9acc;">1번 이미지<br><button>more</button></p>
         </div>
         <a href="#gallery1">다음</a>
       </div>
@@ -413,6 +425,9 @@
     <hr>
 
     <section id="mainGoods">
+      <article id="infoTitle">
+        <p style="color: #7b9acc;">Goods</p>
+      </article>
       <img id="goodsImage" src="./선수제공파일/images/42.jpg" alt="">
       <img src="./선수제공파일/images/43.jpg" alt=""><br>
       <img src="./선수제공파일/images/40.jpg" alt="">

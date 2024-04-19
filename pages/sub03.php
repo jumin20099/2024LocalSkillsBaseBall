@@ -4,14 +4,16 @@ $stmtHolyday = $pdo->prepare($holydaySql);
 $stmtHolyday->execute();
 $holydays = $stmtHolyday->fetchAll(PDO::FETCH_ASSOC);
 
-if ($_SESSION["username"] == "admin"){
+if (isset($_SESSION["username"])){
+    if ($_SESSION["username"] == "admin")
     echo "
     <script>
     location.href='sub03_admin'
     </script>";
 }
 
-if ($_SESSION["username"] == "manager"){
+if (isset($_SESSION["username"])){
+    if ($_SESSION["username"] == "manager")
     echo "
     <script>
     location.href='sub03_manager'
@@ -83,7 +85,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <?php include ("./components/header.php") ?>
 
     <article id="gameTableContainer">
-        <table id="resTable">
+        <table style="color: #7b9acc;" id="resTable">
             <tr>
                 <th>일</th>
                 <th>월</th>
