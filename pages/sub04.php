@@ -17,7 +17,8 @@ $goodsStmt = $pdo->prepare($goodsSql);
 $goodsStmt->execute();
 $goods = $goodsStmt->fetchAll(PDO::FETCH_ASSOC);
 
-foreach ($goods as $good) : endforeach;
+foreach ($goods as $good):
+endforeach;
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") { // 굿즈별로 액션 분기 처리 나눠야함
     if (isset($_POST["action"])) {
@@ -35,6 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { // 굿즈별로 액션 분기 처리
                 $insertStmt->bindParam(":user_idx", $userIdx);
                 $insertStmt->bindParam(":goods_idx", $interestGoodsId);
                 $insertStmt->execute();
+                header("Location: /mypage");
                 break;
             case 'basket':
                 // 사용자가 장바구니에 추가한 상품의 ID를 가져옴
@@ -48,7 +50,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { // 굿즈별로 액션 분기 처리
                 $cartInsertStmt->execute();
 
                 // 페이지 새로고침 방지를 위해 리다이렉트
-                // header("Location: /goods");
+                header("Location: /mypage");
                 break;
             case 'buyNow':
                 @header("Location: /goodsPayment");
@@ -76,15 +78,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { // 굿즈별로 액션 분기 처리
 <!-- $('#modal1').modal('show'); -->
 
 <body>
-    <?php include("./components/header.php") ?>
+    <?php include ("./components/header.php") ?>
     <h1>Goods</h1>
     <div id="goodsContainer">
-        <?php foreach ($goods as $good) : ?>
-            <img onclick="showGoodsModal('<?php echo $good['goods_idx']; ?>');" style="width: 300px; height: 400px;" src="<?php echo $good['goods_image']; ?>">
+        <?php foreach ($goods as $good): ?>
+            <img onclick="showGoodsModal('<?php echo $good['goods_idx']; ?>');" style="width: 300px; height: 400px;"
+                src="<?php echo $good['goods_image']; ?>">
         <?php endforeach; ?>
-        <?php foreach ($goods as $good) : ?>
+        <?php foreach ($goods as $good): ?>
             <!-- Modal -->
-            <div class="modal fade" id="goodsModal<?php echo $good['goods_idx']; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal fade" id="goodsModal<?php echo $good['goods_idx']; ?>" tabindex="-1"
+                aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -101,18 +105,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { // 굿즈별로 액션 분기 처리
                             <div id="goodsDiv">
                                 <form class='goodsForm' action='' method='post'>
                                     <input type='hidden' name='action' value='interestGoods'>
-                                    <input type='hidden' name='goods_idx' class="goodsActionBtn" value='<?php echo $good['goods_idx']; ?>'>
-                                    <button onclick="goodsIdxValueCheck(this)" id='interestBtn' type='submit' name='interest_goods_idx'>관심goods등록</button>
+                                    <input type='hidden' name='goods_idx' class="goodsActionBtn"
+                                        value='<?php echo $good['goods_idx']; ?>'>
+                                    <button onclick="goodsIdxValueCheck(this)" id='interestBtn' type='submit'
+                                        name='interest_goods_idx'>관심goods등록</button>
                                 </form>
                                 <form class='goodsForm' action='' method='post'>
                                     <input type='hidden' name='action' value='basket'>
-                                    <input type='hidden' name='goods_idx' class="goodsActionBtn" value='<?php echo $good['goods_idx']; ?>'>
-                                    <button onclick="goodsIdxValueCheck(this)" id='basketBtn' type='submit' name='shopping_basket_idx'>장바구니</button>
+                                    <input type='hidden' name='goods_idx' class="goodsActionBtn"
+                                        value='<?php echo $good['goods_idx']; ?>'>
+                                    <button onclick="goodsIdxValueCheck(this)" id='basketBtn' type='submit'
+                                        name='shopping_basket_idx'>장바구니</button>
                                 </form>
                                 <form class='goodsForm' action='' method='post'>
                                     <input type='hidden' name='action' value='buyNow'>
-                                    <input type='hidden' name='goods_idx' class="goodsActionBtn" value='<?php echo $good['goods_idx']; ?>'>
-                                    <button onclick="goodsIdxValueCheck(this)" id='buyNowBtn' type='submit' name='buy_now_idx'>바로구매</button>
+                                    <input type='hidden' name='goods_idx' class="goodsActionBtn"
+                                        value='<?php echo $good['goods_idx']; ?>'>
+                                    <button onclick="goodsIdxValueCheck(this)" id='buyNowBtn' type='submit'
+                                        name='buy_now_idx'>바로구매</button>
                                 </form>
                             </div>
                         </div>
@@ -125,7 +135,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { // 굿즈별로 액션 분기 처리
             </div>
         <?php endforeach; ?>
     </div>
-    <?php include("./components/footer.php") ?>
+    <?php include ("./components/footer.php") ?>
     <script src="./선수제공파일/bootstrap-5.2.0-dist/js/bootstrap.js"></script>
     <script src="./script.js"></script>
 </body>
